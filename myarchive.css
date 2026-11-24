@@ -1,0 +1,213 @@
+/* MY ARCHIVE — login (Figma "아카이브-초대", 1440 × 1024 frame)
+   One-screen page: header / progress bar / video with login card / copyright.
+   --s = design px → screen px, fitted to both window width and height. */
+
+.page-myarchive {
+  --s: min(calc(100vw / 1440), calc(100vh / 1024));
+  --gray: #8c8c8c;
+  --gray-dark: #5b5b5b;
+  scroll-snap-type: none;
+}
+html:has(.page-myarchive) { scroll-snap-type: none; }
+
+.ma {
+  height: 100vh; min-height: 560px;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+}
+
+/* ---------- header (blue archive variant) ---------- */
+.box-btn--blue { border-color: var(--archive); color: var(--archive); }
+/* hover: fill turns blue */
+.box-btn--blue:hover,
+.box-btn--fill:hover { background: var(--archive); border-color: var(--archive); color: var(--white); }
+
+/* ---------- progress bar ---------- */
+.ma-steps {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 0 var(--edge);
+  padding: clamp(10px, 1.04vw, 18px) 0;
+  border-bottom: 1px solid var(--black);
+}
+.steps { display: flex; align-items: center; list-style: none; }
+.step-chip {
+  display: inline-flex; align-items: center;
+  padding: 0.12em 0.4em;
+  border: 1px solid var(--gray); color: var(--gray); background: var(--white);
+  font-size: clamp(13px, 1.18vw, 21px); line-height: 1.25; white-space: nowrap;
+}
+.step-chip.is-current { background: var(--archive); border-color: var(--archive); color: var(--white); }
+.step-line { width: clamp(16px, 2.08vw, 36px); height: 1.5px; background: var(--gray); }
+.box-btn--sm { font-size: clamp(13px, 1.18vw, 21px); }
+
+/* ---------- video stage + login card ---------- */
+.ma-stage {
+  position: relative; overflow: hidden;
+  margin: 0 var(--edge);
+  border-bottom: 1px solid var(--black);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--archive);
+}
+.ma-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* login background: a soft, cloudy gradient — white top-left melting into blue bottom-right,
+   with a few blurred blobs drifting slowly so it feels soft (몽글몽글) */
+.ma-glow {
+  position: absolute; inset: 0; overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #c9dbfb 30%, #8fb5f6 58%, #5a90f2 80%, #2f6cf3 100%);
+}
+.ma-glow i {
+  position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.75;
+  animation: maDrift 18s ease-in-out infinite alternate;
+}
+.ma-glow i:nth-child(1) { width: 55%; aspect-ratio: 1; left: -12%; top: -25%; background: #ffffff; }
+.ma-glow i:nth-child(2) { width: 45%; aspect-ratio: 1; left: 30%; top: 25%; background: #a9c7fa; animation-duration: 22s; animation-delay: -6s; }
+.ma-glow i:nth-child(3) { width: 60%; aspect-ratio: 1; right: -18%; bottom: -35%; background: #2563f0; opacity: 0.6; animation-duration: 26s; animation-delay: -12s; }
+@keyframes maDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(4%, 6%) scale(1.08); }
+  100% { transform: translate(-5%, 3%) scale(0.95); }
+}
+@media (prefers-reduced-motion: reduce) { .ma-glow i { animation: none; } }
+
+.login {
+  position: relative; z-index: 1;
+  width: max(340px, calc(490 * var(--s)));
+  padding: calc(40 * var(--s)) max(26px, calc(46 * var(--s))) max(28px, calc(50 * var(--s)));
+  background: var(--white);
+  border-radius: 9px;
+}
+.login__title {
+  text-align: center;
+  font-size: max(20px, calc(28 * var(--s))); font-weight: 600; line-height: 1.3;
+  margin-bottom: max(14px, calc(26 * var(--s)));
+}
+.field + .field { margin-top: max(12px, calc(26 * var(--s))); }
+.field__label { display: block; font-size: max(13px, calc(15 * var(--s))); line-height: 1.2; margin-bottom: max(6px, calc(8 * var(--s))); }
+
+.input, .ghost-btn, .login__submit {
+  height: max(40px, calc(49 * var(--s)));
+  border: 1px solid var(--black); border-radius: 9px; background: var(--white);
+  font: inherit; font-size: max(13px, calc(15 * var(--s)));
+}
+.input {
+  width: 100%; padding: 0 12px; color: var(--black);
+  outline: none;
+}
+.input::placeholder { color: var(--gray); opacity: 1; }
+.input:focus { border-color: var(--black); }
+
+.input-wrap { position: relative; }
+.input-wrap .input { padding-right: 52px; }
+.search-btn {
+  position: absolute; top: 50%; right: 20px; transform: translateY(-50%);
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+}
+.search-btn svg { width: max(16px, calc(18 * var(--s))); height: auto; }
+
+.pw-row { display: grid; grid-template-columns: 220fr 166fr; column-gap: max(8px, calc(11 * var(--s))); }
+.ghost-btn { color: var(--gray-dark); cursor: pointer; white-space: nowrap; padding: 0 8px; }
+
+.login__rule { height: 1px; background: var(--gray-dark); margin: max(14px, calc(24 * var(--s))) 0 max(14px, calc(22 * var(--s))); }
+.login__submit {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  background: var(--archive); border-color: var(--archive); color: var(--white);
+  cursor: pointer;
+}
+
+/* ---------- copyright ---------- */
+.ma-foot {
+  padding: 0.6em var(--edge);
+  border-bottom: 1px solid var(--black);
+  text-align: right; font-size: clamp(13px, 1.18vw, 20px); line-height: 1.4;
+}
+
+/* ---------- 소속 search layer (museum · gallery list) ---------- */
+.addr-layer {
+  position: fixed; inset: 0; z-index: 100;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+}
+.addr-layer.is-open { display: flex; }
+.addr-box {
+  position: relative;
+  width: min(500px, 92vw); height: min(560px, 86vh);
+  background: var(--white); border: 1px solid var(--black);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  display: flex; flex-direction: column;
+}
+.addr-box__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px; border-bottom: 1px solid var(--black);
+  font-size: 15px;
+}
+.addr-box__close { font-size: 22px; line-height: 1; padding: 0 4px; }
+.addr-box__body { flex: 1; min-height: 0; }
+.addr-box__msg { padding: 24px; font-size: 14px; color: var(--gray-dark); line-height: 1.5; }
+
+/* 소속: filled only via the address search */
+.input--pick { cursor: pointer; caret-color: transparent; }
+.input--pick:read-only { background: var(--white); }
+
+/* ======================================================
+   Whole My Archive frame scales as one piece, exactly like the Figma frame
+   (1440 × 1024 design px × --s). Overrides the fluid clamps above.
+   ====================================================== */
+.page-myarchive { --edge: calc(19 * var(--s)); }
+.page-myarchive .lnb { margin: 0 var(--edge); padding: calc(16 * var(--s)) 0; }
+.page-myarchive .lnb .box-btn {
+  height: calc(31 * var(--s)); padding: 0 calc(7 * var(--s));
+  font-size: max(10px, calc(20 * var(--s))); line-height: 1;
+}
+.page-myarchive .ma-steps { padding: calc(14 * var(--s)) 0 calc(15 * var(--s)); }
+.page-myarchive .step-chip,
+.page-myarchive .box-btn--sm {
+  height: calc(27 * var(--s)); padding: 0 calc(7 * var(--s));
+  font-size: max(9px, calc(17 * var(--s))); line-height: 1;
+}
+.page-myarchive .step-line { width: calc(30 * var(--s)); height: max(1px, calc(1.5 * var(--s))); }
+.page-myarchive .ma-foot { padding: calc(10 * var(--s)) var(--edge); font-size: max(9px, calc(17 * var(--s))); line-height: 1.3; }
+
+/* 소속 search : list of museums / galleries */
+.addr-box__search { padding: 12px 14px; border-bottom: 1px solid #ddd; }
+.addr-box__search input {
+  width: 100%; height: 40px; padding: 0 12px;
+  border: 1px solid var(--black); border-radius: 0;
+  font: inherit; font-size: 15px; outline: none; -webkit-appearance: none; appearance: none;
+}
+.addr-box__search input::placeholder { color: var(--gray); }
+.org-list { list-style: none; flex: 1; min-height: 0; overflow-y: auto; }
+.org-list li + li { border-top: 1px solid #e6e6e6; }
+.org-item {
+  width: 100%; text-align: left; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 4px; cursor: pointer;
+}
+.org-item:hover, .org-item:focus { background: #f2f6ff; outline: none; }
+.org-item__name { font-size: 16px; font-weight: 600; color: var(--black); }
+.org-item__name mark { background: none; color: var(--archive); }
+.org-item__addr { font-size: 13px; color: var(--gray-dark); display: flex; gap: 6px; align-items: center; }
+.org-item__tag {
+  font-size: 11px; color: var(--archive); border: 1px solid var(--archive);
+  padding: 0 4px; line-height: 16px; flex: none;
+}
+.org-empty { padding: 20px 16px; font-size: 14px; color: var(--gray-dark); line-height: 1.6; }
+.org-empty .org-item { padding: 10px 0 0; }
+
+/* login background: a slow liquid gradient drawn by maglow.js (WebGL) — the colours flow and fold
+   into each other like silk / water. The CSS gradient + blobs above stay as the fallback. */
+.ma-glow canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.8s ease; }
+.ma-glow.is-gl canvas { opacity: 1; }
+
+/* login: the moving background runs edge to edge (no white margins at the sides);
+   the line under it stays inset like the other rules */
+.ma-stage { margin: 0; border-bottom: 0; }
+.ma-stage::after {
+  content: ""; position: absolute; left: var(--edge); right: var(--edge); bottom: 0;
+  height: 1px; background: var(--black); z-index: 2; pointer-events: none;
+}
+/* …and the line below it runs edge to edge too (the top one stays inset) */
+.ma-stage::after { left: 0; right: 0; }
+
+/* pages without the upload layout (login): the leave box still needs its unit */
+.page-myarchive:not(.page-mylist) { --u: var(--s); }

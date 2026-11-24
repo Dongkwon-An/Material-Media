@@ -1,0 +1,176 @@
+/* MY ARCHIVE — collections list (Figma "아카이브-리스트", 1440 × 1024)
+   Every size below is the Figma value × --s (design px → screen px).
+   --s = min(width / 1440, height / 1024) from myarchive.css, so the page is the
+   Figma frame scaled as a whole: same proportions on every screen. */
+
+@font-face { font-family: "Pretendard"; font-weight: 400; font-display: swap; src: url("assets/fonts/Pretendard-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Pretendard"; font-weight: 800; font-display: swap; src: url("assets/fonts/Pretendard-ExtraBold.woff2") format("woff2"); }
+
+.page-mylist { --u: var(--s); }
+.step-line.is-done { background: var(--archive); }
+
+.ml {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: calc(361 * var(--u)) minmax(0, 1fr);
+  border-bottom: 1px solid var(--black);
+}
+
+/* =========================== sidebar =========================== */
+.ml-side {
+  background: #f7f7f7;
+  border-right: 1px solid var(--black);
+  padding: calc(33 * var(--u)) calc(20 * var(--u)) 0 calc(19 * var(--u));
+  overflow: hidden;
+}
+.ml-name { font-size: calc(35 * var(--u)); font-weight: 700; line-height: calc(34 * var(--u)); }
+
+.ml-meta { list-style: none; margin-top: calc(21 * var(--u)); }
+.ml-meta li {
+  display: flex; align-items: center; gap: calc(7 * var(--u));
+  height: calc(22 * var(--u));
+  font-size: max(9px, calc(15 * var(--u)));
+}
+.ml-meta li::before { content: ""; width: calc(3 * var(--u)); height: calc(3 * var(--u)); background: var(--black); flex: none; }
+.ml-meta i { width: 1px; height: calc(14 * var(--u)); background: var(--black); flex: none; }
+.ml-meta li > span:last-child { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.ml-account { display: flex; gap: calc(6 * var(--u)); margin-top: calc(19 * var(--u)); }
+.pill-btn {
+  display: inline-flex; align-items: center;
+  height: calc(25 * var(--u)); padding: 0 calc(7 * var(--u));
+  border: 1px solid var(--archive); color: var(--archive); background: var(--white);
+  font-size: max(9px, calc(17 * var(--u))); line-height: 1; white-space: nowrap;
+}
+.pill-btn--hover:hover { background: var(--archive); color: var(--white); }
+
+.ml-rule { height: 1px; background: var(--black); margin-top: calc(49 * var(--u)); }
+
+/* cards: 155 × 99, gap 12 */
+.ml-cards {
+  display: grid;
+  grid-template-columns: repeat(2, calc(155 * var(--u)));
+  gap: calc(12 * var(--u));
+  margin-top: calc(20 * var(--u));
+}
+.stat-card {
+  height: calc(99 * var(--u));
+  background: var(--white); border-radius: calc(12 * var(--u));
+  padding: calc(13 * var(--u)) calc(15 * var(--u));
+  display: flex; flex-direction: column; gap: calc(5 * var(--u));
+  overflow: hidden;
+}
+.stat-card__in { display: contents; }
+.stat-card__k { font-size: max(8px, calc(13 * var(--u))); line-height: 1.2; }
+.stat-card__n { font-size: calc(30 * var(--u)); font-weight: 700; color: var(--archive); line-height: 1.2; }
+.stat-card__d { font-size: max(8px, calc(10 * var(--u))); line-height: 1.2; white-space: nowrap; }
+.stat-card--main { background: var(--archive); color: var(--white); }
+.stat-card--main .stat-card__n { color: var(--white); }
+
+/* stage status */
+.ml-h2 { font-size: calc(20 * var(--u)); font-weight: 600; line-height: calc(23 * var(--u)); margin-top: calc(41 * var(--u)); }
+
+.track { margin-top: calc(20 * var(--u)); }
+.track + .track + .track { margin-top: calc(25 * var(--u)); }
+.track__head {
+  display: flex; justify-content: space-between;
+  font-size: max(8px, calc(10 * var(--u))); font-weight: 600; line-height: calc(12 * var(--u));
+}
+.track__bar { display: flex; gap: calc(2 * var(--u)); height: calc(8 * var(--u)); margin-top: calc(11 * var(--u)); }
+.track__bar i { border-radius: calc(6 * var(--u)); }
+.c1 { background: var(--archive); }
+.c2 { background: #6c6c6c; }
+.c3 { background: #a8a8a8; }
+.track__chips { display: flex; gap: calc(9 * var(--u)); margin-top: calc(11 * var(--u)); }
+.track__chips span {
+  display: inline-flex; align-items: center; gap: calc(5 * var(--u));
+  height: calc(22 * var(--u)); padding: 0 calc(7 * var(--u)) 0 calc(6 * var(--u));
+  background: var(--white); border-radius: calc(3 * var(--u));
+  font-size: max(8px, calc(10 * var(--u))); white-space: nowrap;
+}
+.track__chips b { width: calc(6 * var(--u)); height: calc(6 * var(--u)); border-radius: 50%; display: inline-block; }
+.track__chips em { font-style: normal; font-weight: 600; margin-left: calc(4 * var(--u)); }
+
+/* =========================== main =========================== */
+.ml-main {
+  padding: calc(33 * var(--u)) calc(43 * var(--u)) 0 calc(19 * var(--u));
+  overflow-y: auto;
+}
+.ml-tools { display: flex; gap: calc(6 * var(--u)); align-items: flex-start; }
+
+/* State dropdown — 136 × 27 */
+.state { position: relative; width: calc(136 * var(--u)); z-index: 5; }
+.state__btn {
+  width: 100%; height: calc(27 * var(--u));
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 calc(9 * var(--u)) 0 calc(6 * var(--u));
+  border: 1px solid var(--black); background: var(--white);
+  font-size: max(10px, calc(17 * var(--u)));
+}
+.state__btn svg { width: calc(12 * var(--u)); height: calc(8 * var(--u)); transition: transform 0.2s ease; }
+.state.is-open .state__btn { background: #d9d9d9; }
+.state.is-open .state__btn svg { transform: rotate(180deg); }
+.state__menu {
+  position: absolute; left: 0; right: 0; top: calc(100% + 3px);
+  list-style: none; display: flex; flex-direction: column; gap: 3px;
+}
+.state__menu[hidden] { display: none; }
+.state__menu button {
+  width: 100%; text-align: left;
+  height: calc(27 * var(--u)); padding: 0 calc(6 * var(--u));
+  border: 1px solid var(--black); background: var(--white);
+  font-size: max(10px, calc(17 * var(--u)));
+}
+.state__menu button:hover { background: #d9d9d9; }
+.state__menu button.is-selected { background: var(--black); color: var(--white); }
+
+/* search — 344 × 27 */
+.search { position: relative; display: block; width: calc(344 * var(--u)); }
+.search input {
+  width: 100%; height: calc(27 * var(--u));
+  padding: 0 calc(26 * var(--u)) 0 calc(7 * var(--u));
+  border: 1px solid var(--black); border-radius: 0; background: var(--white);
+  font: inherit; font-size: max(9px, calc(13 * var(--u))); color: var(--black);
+  outline: none; -webkit-appearance: none; appearance: none;
+}
+.search input::placeholder { color: var(--gray); opacity: 1; }
+.search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search svg {
+  position: absolute; right: calc(9 * var(--u)); top: 50%; transform: translateY(-50%);
+  width: calc(12 * var(--u)); height: calc(12 * var(--u)); pointer-events: none;
+}
+
+.ml-title { font-size: max(10px, calc(17 * var(--u))); font-weight: 800; line-height: calc(20 * var(--u)); margin-top: calc(28 * var(--u)); }
+
+/* table : text centred at the Figma column centres (46 · 284 · 529.5 · 785 of a 910 table),
+   then a 34 gap and the 73-wide button */
+.table { margin-top: calc(27 * var(--u)); }
+.tr {
+  display: grid;
+  grid-template-columns: 910fr 34fr 73fr;
+  align-items: center;
+  height: calc(39 * var(--u));
+  font-size: max(10px, calc(17 * var(--u)));
+}
+.tr__cells { position: relative; align-self: stretch; border-bottom: 1px solid var(--black); }
+.tr__cells > span { position: absolute; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.tr__cells > span:nth-child(1) { left: 5.055%; }
+.tr__cells > span:nth-child(2) { left: 31.209%; }
+.tr__cells > span:nth-child(3) { left: 58.187%; }
+.tr__cells > span:nth-child(4) { left: 86.264%; }
+.tr--head { font-weight: 600; height: calc(30 * var(--u)); }
+.tr:not(.tr--head) { font-weight: 400; }
+.tr__act { grid-column: 3; display: flex; }
+.row-btn {
+  width: calc(73 * var(--u)); height: calc(27 * var(--u)); padding: 0;
+  border: 1px solid var(--black); background: var(--white);
+  font-size: max(9px, calc(15 * var(--u))); font-weight: 600; white-space: nowrap;
+}
+.row-btn.is-disabled { border-color: var(--gray); color: var(--gray); cursor: default; }
+/* row buttons: same hover as Back — fill turns blue */
+.row-btn:not(.is-disabled):hover { background: var(--archive); border-color: var(--archive); color: var(--white); }
+
+.tr--empty .tr__cells > span { left: 50% !important; color: var(--gray); }
+
+/* list: a work not written yet shows its name as a gray placeholder */
+.tr__cells .is-empty { color: #a6a6a6; }

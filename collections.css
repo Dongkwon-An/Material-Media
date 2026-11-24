@@ -1,0 +1,140 @@
+/* MATERIAL MEDIA STORAGE — Collections (Figma "수장고 - 소장품", 1288:2589, 1440 wide)
+   A normal scrolling page; Ns = N design px × --s (scaled by window width). */
+
+html:has(.page-coll) { scroll-snap-type: none; }
+.page-coll { --s: calc(100vw / 1440); }
+
+/* the page we are on: black button */
+.box-btn.is-active { background: var(--black); color: var(--white); }
+
+/* ---------- filters ---------- */
+.cl-filter {
+  display: flex; gap: calc(5 * var(--s));
+  margin: 0 var(--edge);
+  padding: calc(17 * var(--s)) 0 calc(16 * var(--s));
+}
+.cl-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: calc(27 * var(--s)); min-height: 20px; padding: 0 calc(7 * var(--s));
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font: inherit; font-size: max(12px, calc(17 * var(--s))); font-weight: 500; line-height: 1; white-space: nowrap;
+  cursor: pointer;
+}
+.cl-chip:hover, .cl-chip.is-active { background: var(--black); color: var(--white); }
+
+/* ---------- grid: 4 columns × 4 rows (each row 389) ---------- */
+.cl-grid {
+  position: relative;
+  margin: 0 var(--edge);
+  display: grid;
+  /* line to line: 351 · 350 · 351 · 351 of 1403 */
+  grid-template-columns: 351fr 350fr 351fr 351fr;
+  grid-auto-rows: calc(389 * var(--s));
+}
+.cl-item {
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+  min-width: 0;
+  padding: 0 calc(20 * var(--s)) calc(11.6 * var(--s)) calc(19.5 * var(--s));
+  color: var(--black);
+}
+.cl-item:nth-child(4n + 1) { padding-left: 0; }
+.cl-item:nth-child(4n) { padding-right: 0; }
+
+.cl-img {
+  display: block; overflow: hidden; background: #d9d9d9;
+  width: calc(var(--w) * var(--s)); max-width: 100%;
+  height: calc(var(--h) * var(--s));
+}
+.cl-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.cl-item:hover .cl-img img { transform: scale(1.03); }
+
+.cl-cap {
+  margin-top: calc(9 * var(--s));
+  font-size: max(11px, calc(14 * var(--s))); font-weight: 500; line-height: 1.3;
+}
+.cl-cap span { display: block; }
+
+/* lines: drawn separately so they can appear after the pictures */
+.cl-line { position: absolute; background: var(--black); pointer-events: none; }
+.cl-line--h { left: 0; right: 0; height: 1px; transform-origin: left center; }
+.cl-line--v { top: 0; width: 1px; transform-origin: center top; }
+.cl-line--top { top: -1px; }
+
+/* ---------- pagination ---------- */
+.cl-pages {
+  display: flex; gap: calc(4.6 * var(--s));
+  margin: 0 var(--edge);
+  padding-top: calc(12 * var(--s));
+}
+.cl-page {
+  padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: max(12px, calc(17 * var(--s))); font-weight: 500; line-height: 1.2;
+  color: #8c8c8c; transition: color 0.2s ease;
+}
+.cl-page:hover, .cl-page.is-active { color: var(--black); }
+
+/* ---------- footer (no logo row on this page) ---------- */
+.cl-foot { padding: calc(67 * var(--s)) var(--edge) calc(20 * var(--s)); }
+.cl-foot .footer__box { margin-top: calc(125 * var(--s)); }
+
+/* ---------- entrance: pictures gather in the middle of a white page, fly out to their places,
+   then the lines and everything else appear ---------- */
+.cl-intro .cl-img { visibility: hidden; }
+.cl-intro .cl-fade { opacity: 0; }
+.cl-intro .cl-line--h { transform: scaleX(0); }
+.cl-intro .cl-line--v { transform: scaleY(0); }
+.cl-intro .cl-img { background: transparent; }
+
+.cl-fade { transition: opacity 0.7s ease; }
+.cl-line { transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1); }
+.cl-built .cl-fade { opacity: 1; transition-delay: 0.55s; }
+.cl-built .cl-line { transform: none; }
+.cl-img { transition: background-color 0.4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-fade, .cl-line, .cl-img { transition: none !important; }
+}
+
+/* ---------- Categories dropdown (same look as the Search scope box): All + the six categories ---------- */
+.cl-cats { position: relative; z-index: 40; width: calc(190 * var(--s)); min-width: 150px; height: calc(27 * var(--s)); min-height: 20px; border: 1px solid var(--black); background: #fff; }
+.cl-cats__btn {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 calc(9 * var(--s)) 0 calc(6 * var(--s)); border: 0; background: none; color: var(--black); cursor: pointer;
+  font: inherit; font-size: max(12px, calc(17 * var(--s))); font-weight: 500; text-align: left;
+}
+.cl-cats__btn svg { width: calc(10 * var(--s)); min-width: 8px; height: calc(6 * var(--s)); min-height: 5px; flex: none; transition: transform 0.15s ease; }
+.cl-cats.is-open .cl-cats__btn svg { transform: rotate(180deg); }
+.cl-cats__menu {
+  position: absolute; left: -1px; right: -1px; top: calc(100% + 3px);
+  display: none; flex-direction: column; gap: calc(3 * var(--s));
+  list-style: none; margin: 0; padding: 0;
+}
+.cl-cats.is-open .cl-cats__menu { display: flex; }
+.cl-cats__menu a {
+  display: flex; align-items: center; width: 100%; height: calc(27 * var(--s)); min-height: 20px; padding: 0 calc(6 * var(--s));
+  border: 1px solid var(--black); background: var(--white); color: var(--black); text-decoration: none;
+  font-size: max(12px, calc(17 * var(--s))); font-weight: 500; white-space: nowrap;
+}
+.cl-cats__menu a:hover { background: #f2f2f2; }
+.cl-cats__menu a.is-selected, .cl-cats__menu a.is-selected:hover { background: var(--black); color: var(--white); }
+
+/* All: switching pages — the new works fade in */
+.cl-swap .cl-item:not([hidden]) { animation: clSwap 0.45s ease both; }
+@keyframes clSwap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.cl-item[hidden] { display: none; }
+
+
+/* category chip: hover (or focus) shows a small box explaining what the category covers */
+.cl-cat[data-tip] { position: relative; cursor: help; }
+.cl-cat[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute; left: 0; top: calc(100% + 6px); z-index: 60;
+  width: max(240px, calc(300 * var(--s)));
+  padding: calc(9 * var(--s)) calc(11 * var(--s));
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font-size: max(11px, calc(14 * var(--s))); font-weight: 500; line-height: 1.5; white-space: normal; word-break: keep-all; text-align: left;
+  opacity: 0; transform: translateY(-3px); pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.cl-cat[data-tip]:hover::after, .cl-cat[data-tip]:focus-visible::after { opacity: 1; transform: none; }
+.cl-cat[data-tip]:focus { outline: none; }

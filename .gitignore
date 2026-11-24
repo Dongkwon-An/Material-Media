@@ -1,0 +1,17 @@
+# Mac
+.DS_Store
+# 정리용 임시 폴더
+_to_delete/
+# 사이트에서 쓰지 않는 원본 이미지 (사이트는 각 폴더의 web/ 안 jpg를 씀)
+photo/per/*.png
+photo/light/*.png
+photo/soft/*.png
+photo/net/*.png
+photo/dig/*.png
+photo/mov/*.png
+photo/mov/.DS_Store
+photo/coll/202512_*
+# 지금은 쓰지 않는 영상
+vedio/web/material-media_software_20261120-215341.mp4
+vedio/web/material-media_software_loop_20261117-024440.mp4
+vedio/web/material-media_software_loop_20261120-004518.mp4

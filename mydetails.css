@@ -1,0 +1,122 @@
+/* MY ARCHIVE — details (Figma "아카이브-작성2", 837:4049)
+   Builds on myupload.css. Field grid uses Figma x/y (main column starts at x 380). */
+
+.dt { --t15: max(10px, calc(15 * var(--u))); }
+
+/* field rows: each field sits at its Figma x offset */
+.fgrid { position: relative; height: calc(225 * var(--u)); margin-top: calc(16 * var(--u)); }
+.fgrid--2 { height: calc(137 * var(--u)); }
+.fgrid--4 { height: calc(305 * var(--u)); margin-top: calc(17 * var(--u)); }
+.frow { position: absolute; left: 0; right: 0; top: calc(var(--top) * var(--u)); }
+.fld {
+  position: absolute; left: calc(var(--x) * var(--u)); width: calc(var(--w) * var(--u));
+  display: flex; flex-direction: column; gap: calc(8 * var(--u));
+}
+.fld__l { font-size: var(--t17); font-weight: 500; line-height: calc(18 * var(--u)); white-space: nowrap; }
+
+.fld__box {
+  position: relative; display: flex; align-items: center;
+  height: calc(27 * var(--u)); padding: 0 calc(6 * var(--u));
+  border: 1px solid var(--black); background: var(--white);
+  font-size: var(--t15); font-weight: 500; color: var(--black);
+}
+.fld.is-auto .fld__box { background: #d9d9d9; }
+.fld.is-missing .fld__box { border-color: var(--archive); box-shadow: inset 0 0 0 0.5px var(--archive); }
+
+.fld__in {
+  width: 100%; height: 100%; border: 0; background: transparent; padding: 0;
+  font: inherit; color: inherit; outline: none; min-width: 0;
+}
+.fld__in::placeholder { color: #8c8c8c; opacity: 1; }
+.fld__in:focus::placeholder { color: transparent; }
+.fld__box:focus-within { outline: 2px solid var(--archive); outline-offset: 1px; }
+
+/* select + year: the whole box is a button with a chevron */
+.fld__btn {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between;
+  font: inherit; color: inherit; text-align: left; padding: 0; background: transparent;
+}
+.fld__btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fld__btn svg { width: calc(10 * var(--u)); height: calc(6 * var(--u)); flex: none; transition: transform 0.15s ease; }
+.fld.is-open .fld__btn svg { transform: rotate(180deg); }
+
+/* option list (Figma "채널 수" dropdown: stacked bordered boxes) */
+.fld__menu {
+  position: absolute; left: -1px; right: -1px; top: calc(100% + 3px); z-index: 30;
+  display: none; flex-direction: column; gap: calc(3 * var(--u));
+  list-style: none; margin: 0; padding: 0;
+}
+.fld.is-open .fld__menu { display: flex; }
+.fld__menu button {
+  width: 100%; height: calc(27 * var(--u)); padding: 0 calc(6 * var(--u));
+  border: 1px solid var(--black); background: var(--white); text-align: left;
+  font: inherit; font-size: var(--t15); font-weight: 500;
+}
+.fld__menu button:hover { background: #f2f2f2; }
+.fld__menu button.is-selected { font-weight: 700; }
+
+/* year picker */
+.year-pop {
+  position: absolute; right: -1px; top: calc(100% + 3px); z-index: 30;
+  width: calc(220 * var(--u)); min-width: 190px; padding: 10px;
+  background: var(--white); border: 1px solid var(--black);
+  display: none;
+}
+.fld.is-open .year-pop { display: block; }
+.year-pop__head { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.year-pop__head button { width: 24px; height: 24px; font-size: 16px; line-height: 1; }
+.year-pop__head button:hover { color: var(--archive); }
+.year-pop__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.year-pop__grid button { height: 28px; font-size: 13px; font-weight: 500; border: 1px solid transparent; }
+.year-pop__grid button:hover { border-color: var(--black); }
+.year-pop__grid button.is-selected { background: var(--black); color: var(--white); }
+.year-pop__grid button.is-out { color: #b5b5b5; }
+
+/* sections spacing (Figma y) */
+.dt-sec--spec { margin-top: calc(43 * var(--u)); }
+.dt-sec--install { margin-top: calc(42 * var(--u)); }
+.dt-sec--venue { margin-top: calc(43 * var(--u)); }
+
+/* 작품설명 / 추가사항 */
+.dt-text { margin-top: calc(43 * var(--u)); }
+.dt-text__h {
+  display: flex; align-items: baseline; gap: calc(9 * var(--u));
+  font-size: var(--t17); font-weight: 500; line-height: calc(18 * var(--u));
+}
+.dt-text__h small { font-size: var(--t12); font-weight: 500; color: var(--gray); }
+.dt-count { margin-left: auto; font-style: normal; font-size: var(--t12); color: var(--gray); }
+.dt-count.is-full { color: var(--archive); }
+.dt-area {
+  display: block; width: 100%; height: calc(340 * var(--u)); margin-top: calc(16 * var(--u));
+  padding: calc(11 * var(--u)) calc(12 * var(--u)) calc(18 * var(--u)) calc(13 * var(--u));
+  border: 0.5px solid var(--black); border-radius: calc(9 * var(--u)); background: var(--white);
+  font: inherit; font-size: var(--t17); font-weight: 400; line-height: calc(26 * var(--u));
+  resize: none; outline: none;
+}
+.dt-area:focus { border-color: var(--archive); }
+.dt-area.is-missing { border: 1.5px solid var(--archive); }
+.dt-area.is-typing { caret-color: transparent; }
+
+.dt-ai { display: flex; align-items: center; gap: calc(8 * var(--u)); margin-top: calc(17 * var(--u)); font-size: var(--t17); font-weight: 400; }
+.dt-ai svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); flex: none; }
+
+/* 예산안 / 설치도면 */
+.dt-docs { margin-top: calc(45 * var(--u)); }
+.dt-docs + .dt-docs { margin-top: calc(31 * var(--u)); }
+.dt-docs .dtable { margin-top: calc(27 * var(--u)); }
+.dt-docs .dt-up { margin-top: calc(18 * var(--u)); }
+.dt-docs.is-missing .dt-up { background: var(--archive); }
+
+.dt-sec--venue .stills { margin-top: calc(16 * var(--u)); }
+.page-details .up-next { margin-top: calc(155 * var(--u)); }
+
+.next-btn[aria-disabled="true"] { background: var(--white); border-color: var(--gray); color: var(--gray); }
+
+/* revision mode: field the reviewer asked to fix */
+.fld.is-fix .fld__box { border-color: var(--archive); box-shadow: inset 0 0 0 0.5px var(--archive); }
+
+/* 작품설명: height set by its text (see myarchive.js), never smaller than 4 lines */
+.dt-area--desc { min-height: calc(4 * 26 * var(--u) + 29 * var(--u)); overflow: hidden; }
+
+/* 작품설명: same space above the first line and below the last */
+.dt-area--desc { padding-top: calc(15 * var(--u)); padding-bottom: calc(15 * var(--u)); }

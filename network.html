@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network-based art — MATERIAL MEDIA STORAGE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="collections.css?v=10">
+<script>
+  // start as a white page (the entrance animation removes this); skipped for reduced motion
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("cl-intro");
+</script>
+</head>
+<body class="page-coll" data-motion="meet">
+
+<header class="lnb cl-fade">
+  <a class="box-btn" href="storage.html">MATERIAL MEDIA STORAGE</a>
+  <nav class="lnb__nav">
+    <!-- 다음 페이지가 생기면 href만 바꾸면 됨 -->
+    <a class="box-btn" href="#" data-soon>About</a>
+    <a class="box-btn is-active" href="collections.html" aria-current="page">Collections</a>
+    <a class="box-btn" href="storage-archive.html">Archive</a>
+    <a class="box-btn" href="library.html">My Studio</a>
+    <a class="box-btn" href="search.html">Search</a>
+  </nav>
+</header>
+
+<main class="cl">
+  <div class="cl-filter cl-fade">
+    <!-- 범주 : 나머지 범주 페이지가 생기면 해당 줄의 href만 바꾸고 data-soon 지우면 됨 -->
+    <div class="cl-cats" id="clCats">
+      <button class="cl-cats__btn" type="button" aria-haspopup="true" aria-expanded="false"><span>Categories</span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor"/></svg></button>
+      <ul class="cl-cats__menu" aria-label="범주">
+        <li><a href="collections.html">All</a></li>
+        <li><a href="moving.html">Moving image</a></li>
+        <li><a href="software.html">Software-based art</a></li>
+        <li><a class="is-selected" href="network.html" aria-current="page">Network-based art</a></li>
+        <li><a href="light.html">Light &amp; Kinetic</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="digital.html">Digital Image</a></li>
+      </ul>
+    </div>
+    <span class="cl-chip is-active cl-cat" tabindex="0" data-tip="인터넷, 실시간 데이터, 위치 정보, 웹 브라우저처럼 네트워크 연결을 바탕으로 작동하는 작품" style="background:#e6e938;border-color:#e6e938;color:#000">Network-based art</span>
+  </div>
+
+  <!-- Network-based art : 홈의 Network-based art 버튼 → 이 페이지 (작품들이 가운데서 만났다 살짝 떨어졌다 다시 붙은 뒤 제자리로) -->
+  <section class="cl-grid">
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:224; --h:300"><img src="photo/soft/web/soft9.jpg" alt="윤성재, 데이터의 해안선"></span>
+      <p class="cl-cap cl-fade"><span>해안선</span><span>윤성재</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/soft/web/soft15.jpg" alt="송재원, 무한 스크롤"></span>
+      <p class="cl-cap cl-fade"><span>엔딩 크레딧</span><span>송재원</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/soft/web/soft10.jpg" alt="서지안, 도시 위의 증강 정원"></span>
+      <p class="cl-cap cl-fade"><span>시티 가든-뉴욕</span><span>서지안</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net1.jpg" alt="김나래, 교차하는 트래픽"></span>
+      <p class="cl-cap cl-fade"><span>스페이스 하이웨이</span><span>김나래</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net2.jpg" alt="조민혁, 위성 정원"></span>
+      <p class="cl-cap cl-fade"><span>공중부양하며 정원 가꾸기</span><span>조민혁</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:247"><img src="photo/net/web/net3.jpg" alt="이채원, 주석 달린 나무"></span>
+      <p class="cl-cap cl-fade"><span>주얼리 트리</span><span>이수용</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:247"><img src="photo/net/web/net4.jpg" alt="Sofia Marin, Atlas of Links"></span>
+      <p class="cl-cap cl-fade"><span>Atlas of Links</span><span>Sofia Marin</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:224; --h:300"><img src="photo/net/web/net5.jpg" alt="박건우, 도시의 맥박"></span>
+      <p class="cl-cap cl-fade"><span>도시 프로젝트 - 뉴욕 아시안 택시</span><span>박건우</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net6.jpg" alt="최서윤, 붉은 연결선"></span>
+      <p class="cl-cap cl-fade"><span>Red Line</span><span>최수아</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net7.jpg" alt="정현수, 다리 위의 아바타"></span>
+      <p class="cl-cap cl-fade"><span>파리지앵</span><span>정현수</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:224; --h:300"><img src="photo/net/web/net8.jpg" alt="Lukas Brenner, Signals from 67P"></span>
+      <p class="cl-cap cl-fade"><span>Signals from 67P</span><span>Lukas Brenner</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:247"><img src="photo/net/web/net9.jpg" alt="한도윤, 대역폭"></span>
+      <p class="cl-cap cl-fade"><span>스크린 부수기</span><span>한비</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net10.jpg" alt="윤지아, 누적된 패킷"></span>
+      <p class="cl-cap cl-fade"><span>시위현장</span><span>윤지현</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net11.jpg" alt="임태경, 간섭 무늬"></span>
+      <p class="cl-cap cl-fade"><span>국경에서...</span><span>임태경</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:247"><img src="photo/net/web/net12.jpg" alt="배서연, 실시간 여론"></span>
+      <p class="cl-cap cl-fade"><span>정치적으로 예술하기</span><span>배상호</span></p>
+    </a>
+    <a class="cl-item" href="#" data-soon>
+      <span class="cl-img" style="--w:331; --h:185"><img src="photo/net/web/net13.jpg" alt="신재훈, 토지의 레이어"></span>
+      <p class="cl-cap cl-fade"><span>토지의 레이어</span><span>신재훈</span></p>
+    </a>
+    <i class="cl-line cl-line--h cl-line--top"></i>
+    <i class="cl-line cl-line--h" style="top:calc(389 * var(--s) - 1px)"></i>
+    <i class="cl-line cl-line--h" style="top:calc(778 * var(--s) - 1px)"></i>
+    <i class="cl-line cl-line--h" style="top:calc(1167 * var(--s) - 1px)"></i>
+    <i class="cl-line cl-line--h" style="top:calc(1556 * var(--s) - 1px)"></i>
+    <i class="cl-line cl-line--v" style="left:calc(351 / 1403 * 100%); height:calc(1556 * var(--s))"></i>
+    <i class="cl-line cl-line--v" style="left:calc(701 / 1403 * 100%); height:calc(1556 * var(--s))"></i>
+    <i class="cl-line cl-line--v" style="left:calc(1052 / 1403 * 100%); height:calc(1556 * var(--s))"></i>
+  </section>
+
+  <!-- 페이지 : 다음 페이지가 생기기 전까지는 눌러도 번호 색만 바뀜 -->
+  <nav class="cl-pages cl-fade" aria-label="페이지"><button class="cl-page is-active" type="button" aria-current="page">1</button><button class="cl-page" type="button">2</button><button class="cl-page" type="button">3</button><button class="cl-page" type="button">4</button><button class="cl-page" type="button">5</button><button class="cl-page" type="button">6</button><button class="cl-page" type="button">7</button><button class="cl-page" type="button">8</button><button class="cl-page" type="button">9</button><button class="cl-page" type="button">10</button></nav>
+</main>
+
+<footer class="cl-foot cl-fade">
+  <p class="footer__copy">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+  <div class="footer__box">
+    <p>머티리얼 미디어<br>MATERIAL MEDIA</p>
+    <p>서울특별시 마포구 와우산로 00<br>00, Wausan-ro 00, Mapo-gu, Seoul, Republic of Korea</p>
+    <p>+82)02-123-456<br>info@mm.org<br>@material_media</p>
+  </div>
+</footer>
+
+<script src="collections.js?v=44"></script>
+<script src="sitenav.js?v=3"></script>
+</body>
+</html>

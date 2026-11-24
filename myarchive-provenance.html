@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작품 이력 — MATERIAL MEDIA ARCHIVE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="myarchive.css?v=39">
+<link rel="stylesheet" href="mylist.css?v=32">
+<link rel="stylesheet" href="myupload.css?v=56">
+<link rel="stylesheet" href="myprov.css?v=6">
+</head>
+<body class="page-myarchive page-mylist page-upload page-prov">
+<div class="ma">
+
+  <!-- header -->
+  <header class="lnb">
+    <a class="box-btn box-btn--blue" href="myarchive-login.html" data-goto="archive-home">MATERIAL MEDIA ARCHIVE</a>
+    <nav class="lnb__nav">
+      <a class="box-btn box-btn--blue" href="#" data-goto="myarchive-home">My Archive</a>
+    </nav>
+  </header>
+
+  <!-- progress bar -->
+  <div class="ma-steps">
+    <ol class="steps" aria-label="아카이브 진행 단계">
+      <li class="step-chip is-current">Get Started</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Collections List</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Upload</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Details</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current" aria-current="step">Provenance</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Submit</li>
+    </ol>
+    <div class="steps-actions">
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="saveBtn">Save</button>
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="backBtn">Back</button>
+    </div>
+  </div>
+
+  <div class="ml">
+    <aside class="ml-side">
+      <h1 class="ml-name" id="userName">홍길동</h1>
+      <ul class="ml-meta">
+        <li><span>소속</span><i></i><span id="userOrg">갤러리 서울</span></li>
+        <li><span>내 소장품</span><i></i><span>05개</span></li>
+      </ul>
+      <div class="ml-account">
+        <a class="pill-btn pill-btn--hover" href="myarchive-login.html" id="logoutBtn">로그아웃</a>
+        <span class="pill-btn">개인정보 변경</span>
+      </div>
+
+      <div class="ml-rule"></div>
+
+      <div class="ml-cards">
+        <div class="stat-card stat-card--main"><div class="stat-card__in"><p class="stat-card__k">전체 소장품</p><p class="stat-card__n">05</p><p class="stat-card__d">반입 예정 작품들</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">진행 중</p><p class="stat-card__n">03</p><p class="stat-card__d">입력·대기·심사</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">완료</p><p class="stat-card__n">01</p><p class="stat-card__d">Datacenter 업로드 예정</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">반려</p><p class="stat-card__n">01</p><p class="stat-card__d">재심사 필요</p></div></div>
+      </div>
+
+      <h2 class="ml-h2">단계별 상태</h2>
+
+      <div class="track">
+        <div class="track__head"><span>접수 현황</span><span>4건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:143"></i><i class="c2" style="flex:69"></i><i class="c3" style="flex:106"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>대기<em>2</em></span><span><b class="c2"></b>심사<em>1</em></span><span><b class="c3"></b>반려<em>1</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>심사 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>심사중<em>1</em></span><span><b class="c2"></b>재심중<em>0</em></span><span><b class="c3"></b>총평중<em>0</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>재심 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>수정<em>1</em></span><span><b class="c3"></b>통과<em>0</em></span></div>
+      </div>
+    </aside>
+
+    <!-- ===== upload form ===== -->
+    <main class="ml-main up pv">
+
+      <!-- 연혁 -->
+      <section class="up-sec">
+        <h2 class="up-h">연혁</h2>
+        <div class="pv-block" data-pv="acq" data-cols="3">
+          <p class="pv-h">취득 이력</p>
+          <div class="dtable">
+            <div class="drow drow--head"><div class="drow__cells"><span>순서</span><span>소유자</span><span>취득 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+        <div class="pv-block" data-pv="deal" data-cols="3">
+          <p class="pv-h">거래 이력</p>
+          <div class="dtable">
+            <div class="drow drow--head"><div class="drow__cells"><span>순서</span><span>거래자</span><span>거래 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+        <div class="pv-block" data-pv="exh" data-cols="4">
+          <p class="pv-h">전시 이력 <small>수장 작품만 작성하십시오.</small></p>
+          <div class="dtable">
+            <div class="drow drow--head drow--4"><div class="drow__cells"><span>순서</span><span>전시기관</span><span>전시명과 기관</span><span>전시 기간</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+        <div class="pv-block" data-pv="own" data-cols="4">
+          <p class="pv-h">소장 이력</p>
+          <div class="dtable">
+            <div class="drow drow--head drow--4"><div class="drow__cells"><span>순서</span><span>소장자</span><span>기관</span><span>소장 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+        <div class="pv-block" data-pv="cons" data-cols="4">
+          <p class="pv-h">보존 처리 이력</p>
+          <div class="dtable">
+            <div class="drow drow--head drow--4"><div class="drow__cells"><span>순서</span><span>보존 업체</span><span>담당자</span><span>보존 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+      </section>
+
+      <!-- 권리 -->
+      <section class="up-sec pv-sec--rights">
+        <h2 class="up-h">권리</h2>
+        <div class="pv-block pv-block--fixed" data-pv="rights" data-cols="4" data-fixed="저작권 관련 자료|계약서|작품보증서|보험료 증명서">
+          <div class="dtable">
+            <div class="drow drow--head drow--4"><div class="drow__cells"><span>순서</span><span>파일</span><span>파일명</span><span></span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+        </div>
+      </section>
+
+      <div class="up-next">
+        <button class="next-btn" type="button" id="pvNext">Next</button>
+      </div>
+    </main>
+  </div>
+
+  <p class="ma-foot">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="sitenav.js?v=3"></script>
+<script src="main.js?v=73"></script>
+<script src="myarchive.js?v=72"></script>
+</body>
+</html>

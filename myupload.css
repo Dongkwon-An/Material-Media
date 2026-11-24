@@ -1,0 +1,321 @@
+/* MY ARCHIVE — upload (Figma "아카이브-작성1", 1440 wide)
+   Header, progress bar and sidebar stay fixed; only the form column scrolls.
+   All sizes are Figma px × --u (see mylist.css / myarchive.css). */
+
+.page-upload .ml-main { padding: calc(33 * var(--u)) calc(19 * var(--u)) calc(60 * var(--u)) calc(19 * var(--u)); overflow-y: auto; }
+.page-upload .ml { min-height: 0; }
+
+/* Save + Back */
+.steps-actions { display: flex; gap: calc(6 * var(--u)); }
+
+.up { --t17: max(11px, calc(17 * var(--u))); --t12: max(9px, calc(12 * var(--u))); --gray: #8c8c8c; }
+
+/* section titles */
+.up-h {
+  font-size: var(--t17); font-weight: 800; line-height: calc(20 * var(--u));
+  display: flex; align-items: baseline; gap: calc(9 * var(--u)); flex-wrap: wrap;
+}
+.up-h--bold { font-weight: 700; }
+.up-h small { font-size: var(--t12); font-weight: 500; color: var(--gray); }
+.up-h__b { font-weight: 700; margin-left: calc(-5 * var(--u)); }
+
+/* ---------- 작품 유형 선택 ---------- */
+.types { display: flex; flex-wrap: wrap; gap: calc(18 * var(--u)); margin-top: calc(16 * var(--u)); }
+.type { position: relative;
+  display: inline-flex; align-items: center; gap: calc(9 * var(--u));
+  font-size: var(--t17); line-height: calc(20 * var(--u)); cursor: pointer; user-select: none;
+}
+.type input { position: absolute; opacity: 0; pointer-events: none; }
+.type i {
+  width: calc(16 * var(--u)); height: calc(16 * var(--u)); flex: none;
+  border: 1px solid var(--black); border-radius: calc(3 * var(--u)); background: var(--white);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.type input:checked + i { background: var(--black); }
+.type input:checked + i::after {
+  content: ""; width: 35%; height: 60%;
+  border: solid var(--white); border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-12%) rotate(45deg);
+}
+.type input:focus-visible + i { outline: 2px solid var(--archive); outline-offset: 2px; }
+
+/* ---------- 작품 업로드 ---------- */
+.up-sec--works { margin-top: calc(54 * var(--u)); }
+.versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: calc(66 * var(--u)); margin-top: calc(16 * var(--u)); }
+.ver__t { font-size: var(--t17); font-weight: 500; line-height: calc(23 * var(--u)); }
+.ver__d { font-size: var(--t12); color: var(--gray); line-height: calc(14 * var(--u)); margin-top: calc(7 * var(--u)); }
+
+.drop, .stills {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(10 * var(--u));
+  height: calc(171 * var(--u));
+  background: #f2f2f2; border: 0.5px solid var(--black); border-radius: calc(9 * var(--u));
+  cursor: pointer;
+}
+.drop { margin-top: calc(14 * var(--u)); }
+.drop:hover, .stills__add:hover { background: #ebebeb; }
+.up-ico { width: calc(22 * var(--u)); height: calc(27 * var(--u)); flex: none; }
+.drop__name {
+  max-width: 88%; font-size: var(--t12); color: var(--black); line-height: 1.3;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center;
+}
+.drop__name:empty { display: none; }
+.drop.has-file { background: #fafafa; }
+
+.why { display: flex; align-items: center; gap: calc(8 * var(--u)); margin-top: calc(17 * var(--u)); font-size: var(--t17); font-weight: 500; }
+.why__q {
+  width: calc(20 * var(--u)); height: calc(20 * var(--u)); border-radius: 50%; flex: none;
+  background: #5b5b5b; color: var(--white); font-size: calc(14 * var(--u)); font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+}
+.why__a { font-size: var(--t17); font-weight: 400; line-height: calc(27 * var(--u)); margin-top: calc(8 * var(--u)); }
+
+/* ---------- 스틸컷 업로드 ---------- */
+.up-sec--stills { margin-top: calc(46 * var(--u)); }
+.stills { margin-top: calc(16 * var(--u)); flex-direction: row; gap: calc(16 * var(--u)); padding: calc(16 * var(--u)); cursor: default; }
+.stills__thumbs { display: flex; gap: calc(16 * var(--u)); height: 100%; }
+.stills__thumbs:empty { display: none; }
+.thumb-still { position: relative; height: 100%; aspect-ratio: 16 / 10; border-radius: calc(6 * var(--u)); overflow: hidden; background: #ddd; }
+.thumb-still img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-still button {
+  position: absolute; top: calc(6 * var(--u)); right: calc(6 * var(--u));
+  width: calc(22 * var(--u)); height: calc(22 * var(--u)); min-width: 18px; min-height: 18px;
+  background: rgba(0, 0, 0, 0.6); color: var(--white); border-radius: 50%;
+  font-size: max(11px, calc(13 * var(--u))); line-height: 1; display: flex; align-items: center; justify-content: center;
+}
+.stills__add {
+  height: 100%; flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(10 * var(--u));
+  border-radius: calc(6 * var(--u));
+}
+.stills__add[hidden] { display: none; }
+.stills.has-thumbs .stills__add { flex: 0 0 auto; aspect-ratio: 16 / 10; border: 1px dashed #b5b5b5; }
+
+/* ---------- 추가 자료 업로드 ---------- */
+.up-sec--docs { margin-top: calc(43 * var(--u)); }
+.chips { display: flex; gap: calc(7 * var(--u)); margin-top: calc(9 * var(--u)); }
+.chips span {
+  width: calc(59 * var(--u)); height: calc(22 * var(--u));
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #f5f6f5; border-radius: calc(3 * var(--u));
+  font-size: max(8px, calc(10 * var(--u))); white-space: nowrap;
+}
+.dtable { margin-top: calc(18 * var(--u)); }
+.drow {
+  display: grid; grid-template-columns: 910fr 16fr 73fr 18fr 24fr;
+  align-items: center; height: calc(39 * var(--u));
+  font-size: var(--t17);
+}
+.drow--head { height: calc(30 * var(--u)); font-weight: 600; }
+.drow__cells { position: relative; align-self: stretch; border-bottom: 1px solid var(--black); }
+.drow__cells > span { position: absolute; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.drow__cells > span:nth-child(1) { left: 5.055%; }                         /* 파일 · 426 */
+.drow__cells > span:nth-child(2) { left: 29.01%; transform: translate(0, -50%); max-width: 46%; overflow: hidden; text-overflow: ellipsis; } /* 파일명 · left 644 */
+.drow--head .drow__cells > span:nth-child(2) { left: 31.209%; transform: translate(-50%, -50%); }
+.drow__cells > span:nth-child(3) { left: 80.55%; }                         /* 업로드 일시 · 1113 */
+.drow:not(.drow--head) { font-weight: 400; }
+.drow__cells a { color: var(--black); text-decoration: underline; text-underline-offset: 2px; }
+.drow__cells .is-empty { color: var(--black); }
+
+.mini-btn {
+  height: calc(27 * var(--u)); border: 1px solid var(--black); background: var(--white);
+  font-size: max(9px, calc(15 * var(--u))); font-weight: 600; white-space: nowrap; padding: 0;
+}
+.mini-btn--change { grid-column: 3; }
+.mini-btn--x { grid-column: 5; font-size: var(--t17); font-weight: 500; }
+.mini-btn:disabled { border-color: var(--gray); color: var(--gray); cursor: default; }
+.mini-btn:not(:disabled):hover { background: var(--archive); border-color: var(--archive); color: var(--white); }
+
+.doc-actions { display: flex; align-items: center; gap: calc(11 * var(--u)); margin-top: calc(18 * var(--u)); }
+.pill-gray {
+  height: calc(25 * var(--u)); min-width: calc(66 * var(--u)); padding: 0 calc(10 * var(--u));
+  border-radius: calc(9 * var(--u)); background: var(--gray); color: var(--white);
+  font-size: max(9px, calc(15 * var(--u))); white-space: nowrap;
+}
+.pill-gray:hover { background: #6f6f6f; }
+
+/* AI switch */
+.switch { position: relative; display: inline-flex; align-items: center; gap: calc(13 * var(--u)); cursor: pointer; user-select: none; font-size: var(--t17); font-weight: 500; }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.switch i {
+  position: relative; width: calc(40 * var(--u)); height: calc(20 * var(--u)); flex: none;
+  border-radius: calc(12 * var(--u)); background: #d9d9d9; transition: background 0.2s ease;
+}
+.switch i::after {
+  content: ""; position: absolute; top: calc(1 * var(--u)); left: calc(1 * var(--u));
+  width: calc(18 * var(--u)); height: calc(18 * var(--u)); border-radius: 50%;
+  background: var(--white); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+.switch input:checked + i { background: var(--archive); }
+.switch input:checked + i::after { transform: translateX(calc(20 * var(--u))); }
+.switch input:focus-visible + i { outline: 2px solid var(--archive); outline-offset: 2px; }
+
+/* ---------- 권리 동의 ---------- */
+.up-sec--terms { margin-top: calc(45 * var(--u)); }
+.terms { display: flex; flex-direction: column; gap: calc(16 * var(--u)); margin-top: calc(18 * var(--u)); }
+.term {
+  min-height: calc(130 * var(--u));
+  padding: calc(15 * var(--u)) calc(24 * var(--u)) calc(21 * var(--u)) calc(18 * var(--u));
+  border: 0.5px solid var(--black); border-radius: calc(9 * var(--u));
+  font-size: var(--t17); line-height: calc(28.05 * var(--u));
+  transition: background 0.2s ease;
+}
+.term__t { font-weight: 600; }
+.term__b { font-weight: 400; margin-top: calc(10 * var(--u)); }
+.terms.is-agreed .term { background: #f2f2f2; }
+#agreeBtn { margin-top: calc(16 * var(--u)); }
+#agreeBtn[aria-pressed="true"] { background: var(--archive); }
+
+/* ---------- Next ---------- */
+.up-next { display: flex; justify-content: flex-end; margin-top: calc(163 * var(--u)); }
+.next-btn {
+  height: calc(27 * var(--u)); min-width: calc(51 * var(--u)); padding: 0 calc(7 * var(--u));
+  background: var(--archive); border: 1px solid var(--archive); color: var(--white);
+  font-size: var(--t17);
+}
+.next-btn:disabled { background: var(--white); border-color: var(--gray); color: var(--gray); cursor: not-allowed; }
+
+/* toast */
+.toast {
+  position: fixed; left: 50%; bottom: 60px; transform: translate(-50%, 20px);
+  background: var(--black); color: var(--white); padding: 10px 18px; font-size: 14px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 200;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* lock the page to the viewport: only the form column scrolls */
+html:has(.page-upload), .page-upload { height: 100%; overflow: hidden; }
+.page-upload .ma { height: 100vh; height: 100dvh; min-height: 0; }
+.stills.has-thumbs { justify-content: flex-start; }
+
+/* 작품 업로드 — remove uploaded file */
+.drop__del {
+  position: absolute; top: calc(10 * var(--u)); right: calc(10 * var(--u));
+  width: calc(22 * var(--u)); height: calc(22 * var(--u)); min-width: 18px; min-height: 18px;
+  background: rgba(0, 0, 0, 0.6); color: var(--white); border-radius: 50%;
+  font-size: max(11px, calc(13 * var(--u))); line-height: 1;
+  display: none; align-items: center; justify-content: center;
+}
+.drop.has-file .drop__del { display: flex; }
+.drop__del:hover { background: var(--black); }
+
+/* auto-made 열람본 + missing-upload highlight */
+.drop.is-busy .drop__name { color: var(--gray); }
+.drop.is-missing, .stills.is-missing { border: 1.5px solid var(--archive); }
+
+/* ---------- Leave modal (Figma 952:2293) — shared by Upload · Details · Provenance ---------- */
+.leave { position: fixed; inset: 0; z-index: 300; display: none; }
+.leave.is-open { display: block; }
+.leave__dim {
+  position: absolute; left: 0; right: 0; bottom: 0; top: var(--leave-top, 0);
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(4.3px); backdrop-filter: blur(4.3px);
+}
+.leave__box {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: calc(614 * var(--u)); height: calc(391 * var(--u)); min-width: 320px; min-height: 210px;
+  display: flex; flex-direction: column;
+  background: var(--white); border-radius: calc(9 * var(--u));
+}
+.leave__top {
+  height: calc(49 * var(--u)); flex: none; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 calc(15 * var(--u)) 0 calc(16 * var(--u)); border-bottom: 1px solid var(--black);
+}
+.leave__tag {
+  height: calc(27 * var(--u)); padding: 0 calc(7 * var(--u)); display: inline-flex; align-items: center;
+  background: var(--archive); color: var(--white); font-size: max(11px, calc(17 * var(--u))); font-weight: 500;
+}
+.leave__x {
+  width: calc(24 * var(--u)); height: calc(27 * var(--u)); min-width: 18px; min-height: 20px;
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font-size: max(11px, calc(17 * var(--u))); font-weight: 500; line-height: 1; padding: 0;
+}
+.leave__body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(29 * var(--u)); text-align: center; padding-top: calc(10 * var(--u)); }
+.leave__t { font-size: max(18px, calc(30 * var(--u))); font-weight: 500; line-height: 1.2; }
+.leave__s { font-size: max(12px, calc(18 * var(--u))); font-weight: 500; line-height: 1.2; }
+.leave__foot {
+  height: calc(70 * var(--u)); flex: none; display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u));
+  border-top: 1px solid var(--black); padding-bottom: calc(6 * var(--u));
+}
+.leave__btn {
+  height: calc(27 * var(--u)); padding: 0 calc(7 * var(--u)); min-height: 20px;
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font-size: max(11px, calc(17 * var(--u))); font-weight: 500;
+}
+/* only Leave reacts on hover */
+.leave__btn--go { border-color: var(--archive); color: var(--archive); }
+.leave__btn--go:hover { background: var(--archive); color: var(--white); }
+.leave__btn:focus, .leave__x:focus { outline: none; }
+
+/* revision mode: part the reviewer asked to fix */
+.drop.is-fix { border: 1.5px solid var(--archive); }
+
+/* ---------- Loading boxes (Figma 1329:11394 · 1329:11626): the grey band plays the loop video, filling it ---------- */
+.leave--loading .leave__box { overflow: hidden; }
+.leave--loading .leave__foot { position: relative; padding: 0; background: #fff; }
+.leave--loading .leave__foot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }   /* fills the band edge to edge */
+
+/* Details: text typed in after Loading — blue while writing, black when done */
+.fld__in.is-typing, .dt-area.is-typing, textarea.is-typing { color: var(--archive) !important; }
+.fld__in, #desc { transition: color 0.5s ease; }
+
+/* modal text drawn like Figma (thin grayscale smoothing on Mac — browsers otherwise draw Medium a little heavier) */
+.leave__box { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.leave__t, .leave__s { font-family: "Pretendard", -apple-system, sans-serif; font-weight: 500; font-synthesis: none; }
+
+/* small window: the sub line gets small (min 12px) and Medium looks heavier than in Figma there,
+   so below that size it uses the Regular cut — it then reads like the Medium in the design */
+@font-face { font-family: "Pretendard Text"; font-weight: 400; font-display: swap; src: url("assets/fonts/Pretendard-Regular.woff2") format("woff2"); }
+@media (max-width: 1100px), (max-height: 780px) {   /* sub line under ~14px */
+  .leave__s { font-family: "Pretendard Text", "Pretendard", -apple-system, sans-serif; font-weight: 400; }
+}
+
+/* Loading: no line above the video band */
+.leave--loading .leave__foot { border-top: 0; }
+
+/* Loading: the sub line "thinks" like an AI service — a light sweeps across the words, dots count up,
+   and when the step changes the line slides out and the new one comes in */
+.leave--loading .leave__s {
+  background: linear-gradient(90deg, #000 0%, #000 38%, #c4c4c4 50%, #000 62%, #000 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: mmThink 1.9s linear infinite;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.leave--loading .leave__s::after {
+  content: ""; display: inline-block; width: 1.2em; text-align: left;
+  -webkit-text-fill-color: #000; color: #000;
+  animation: mmDots 1.2s steps(4, end) infinite;
+}
+.leave--loading .leave__s.is-out { opacity: 0; transform: translateY(-8px); }
+.leave--loading .leave__s.is-in { opacity: 0; transform: translateY(8px); transition: none; }
+@keyframes mmThink { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes mmDots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75%, 100% { content: "..."; } }
+
+/* Loading v2: the box has no band and no lines below the header (user's sketch).
+   The video replaces the frosted page behind the box: it starts at 80% and slowly blurs and fades away. */
+.leave--loading .leave__body { padding: 0 0 calc(40 * var(--u)); }
+.leave--loading .leave__foot { display: none; }
+.leave__vid {
+  position: absolute; left: 0; right: 0; bottom: 0; top: var(--leave-top, 0);
+  width: 100%; height: calc(100% - var(--leave-top, 0px)); object-fit: cover; display: block;
+  opacity: 0; pointer-events: none;
+}
+.leave__vid.is-run { animation: mmFadeAway var(--dur, 10s) ease-in-out forwards; }
+@keyframes mmFadeAway {   /* over the 10s video: stays at 80%, then slips away smoothly at the end */
+  0%   { opacity: 0.8; filter: blur(0); }
+  65%  { opacity: 0.8; filter: blur(0); }
+  100% { opacity: 0;   filter: blur(14px); }
+}
+
+/* modal boxes keep their Figma shadow (Leave · Final Submission · Done · Loading) */
+.leave__box { box-shadow: calc(6 * var(--u)) calc(6 * var(--u)) calc(4 * var(--u)) calc(6 * var(--u)) rgba(0, 0, 0, 0.25); }
+
+/* Loading · 최종제출 중: box a little shorter (no button band), text centred in the body */
+.leave--loading .leave__box { height: calc(384 * var(--u)); }
+.leave--loading .leave__body { padding: 0; }
+
+/* 작품설명: no automatic hyphenation, Korean words never split */
+#desc, .dt-area { hyphens: manual; -webkit-hyphens: manual; word-break: keep-all; overflow-wrap: break-word; }

@@ -1,0 +1,24 @@
+/* MATERIAL MEDIA STORAGE — Archive lists (Figma 880:3461 Criticism · 1322:10936 Exhibition Criticism · 1324:11019 Interviews) */
+
+.ar-bar { align-items: center; }
+.ar-find { margin-left: auto; width: calc(442 * var(--s)); }
+
+.ar-area {
+  margin: 0 var(--edge);
+  min-height: calc(858 * var(--s));
+  border-top: 1px solid var(--black); border-bottom: 1px solid var(--black);
+  padding-top: calc(2 * var(--s));
+}
+.ar-list { list-style: none; margin: 0; padding: 0; }
+.ar-list[hidden] { display: none; }
+.ar-list li { border-bottom: 1px solid var(--black); }
+.ar-row {
+  display: flex; align-items: center; height: calc(39 * var(--s) - 1px); min-height: 28px;   /* + 1px line = 39 line to line */
+  font-size: max(12px, calc(17 * var(--s))); font-weight: 500; color: var(--black);
+}
+.ar-date { flex: 0 0 calc(138 * var(--s)); }
+.ar-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ar-row:hover .ar-title { text-decoration: underline; text-underline-offset: 3px; }
+.ar-empty { padding: calc(40 * var(--s)) 0; text-align: center; font-size: calc(30 * var(--s)); font-weight: 600; color: #8c8c8c; }
+.ar-empty[hidden] { display: none; }
+.ar-pages { margin: 0; padding-top: calc(12 * var(--s)); }

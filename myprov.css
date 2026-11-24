@@ -1,0 +1,33 @@
+/* MY ARCHIVE — provenance (Figma "아카이브-작성3", 837:3608). Builds on myupload.css. */
+
+.pv-block { margin-top: calc(28 * var(--u)); }
+.up-sec > .up-h + .pv-block { margin-top: calc(16 * var(--u)); }
+.pv-h {
+  display: flex; align-items: baseline; gap: calc(9 * var(--u));
+  font-size: var(--t17); font-weight: 500; line-height: calc(18 * var(--u));
+}
+.pv-h small { font-size: max(8px, calc(10 * var(--u))); font-weight: 500; color: var(--gray); }
+.pv-block .dtable { margin-top: calc(16 * var(--u)); }
+.pv-block .dt-up { margin-top: calc(18 * var(--u)); }
+.pv-sec--rights { margin-top: calc(42 * var(--u)); }
+.pv-sec--rights .pv-block { margin-top: calc(16 * var(--u)); }
+
+/* columns (Figma: 순서 c426 · col2 left 644 · col3 centred in the gap between the col2 text ("파일을 업로드해주세요.") and the date / upload column · date c1110, table 380–1290)
+   header and the values under it share one centre line */
+.pv .drow__cells > span { position: absolute; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.pv .drow__cells > span:nth-child(2) { left: 29.01%; transform: translate(0, -50%); max-width: 22%; overflow: hidden; text-overflow: ellipsis; }
+.pv .drow__cells > span:nth-child(3) { left: 85%; }
+.pv .drow--4 .drow__cells > span:nth-child(3) { left: 63.8%; max-width: 20%; overflow: hidden; text-overflow: ellipsis; }
+/* 권리: halfway between the file-type labels and the 업로드 buttons */
+.pv [data-pv="rights"] .drow--4 .drow__cells > span:nth-child(3) { left: 58.9%; }
+.pv .drow--4 .drow__cells > span:nth-child(4) { left: 85%; }
+.pv [data-pv="rights"] .drow--4 .drow__cells > span:nth-child(4) { left: 80.27%; }
+
+/* 권리: an 업로드 button sits where 업로드 일시 was */
+.pv-row-up { height: calc(25 * var(--u)); min-width: calc(66 * var(--u)); }
+.pv .drow__cells > span.pv-cell-btn { overflow: visible; }
+
+.page-prov .up-next { margin-top: calc(156 * var(--u)); }
+
+/* revision mode: history the reviewer asked to fix */
+.pv-block.is-fix .dtable { outline: 1.5px solid var(--archive); outline-offset: calc(6 * var(--u)); border-radius: calc(4 * var(--u)); }

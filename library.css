@@ -1,0 +1,86 @@
+/* MATERIAL MEDIA STORAGE — My Library (Figma 876:2021 card · 951:2004 list). Ns = N design px × --s */
+
+.lib {
+  display: grid; grid-template-columns: calc(342 * var(--s)) 1fr;
+  margin: 0 var(--edge);
+  min-height: calc(858 * var(--s));
+  border-top: 1px solid var(--black); border-bottom: 1px solid var(--black);
+}
+
+/* ---------- me ---------- */
+.lib-me { position: relative; border-right: 1px solid var(--black); padding-right: calc(20 * var(--s)); }
+.lib-name { margin-top: calc(13 * var(--s)); font-size: calc(35 * var(--s)); font-weight: 700; line-height: 1.2; }
+.lib-info { list-style: none; margin-top: calc(26 * var(--s)); font-size: max(12px, calc(15 * var(--s))); font-weight: 500; line-height: 1.2; }
+.lib-info li { display: flex; align-items: center; gap: calc(7 * var(--s)); }
+.lib-info li + li { margin-top: calc(4 * var(--s)); }
+.lib-info li::before { content: ""; width: 3px; height: 3px; background: var(--black); }
+.lib-info i { width: 1px; height: calc(14 * var(--s)); background: var(--black); }
+.lib-btns { display: flex; gap: calc(5 * var(--s)); margin-top: calc(23 * var(--s)); padding-bottom: calc(49 * var(--s)); border-bottom: 1px solid var(--black); }
+.lib-btns .cl-chip { height: calc(25 * var(--s)); min-height: 20px; }
+
+/* ---------- main ---------- */
+.lib-main { padding: calc(17 * var(--s)) 0 calc(40 * var(--s)) calc(8 * var(--s)); min-width: 0; }
+
+.lib-view { display: flex; gap: calc(9 * var(--s)); height: calc(13 * var(--s)); }
+.lib-view__b { padding: 0; border: 0; background: none; cursor: pointer; color: #8c8c8c; }
+.lib-view__b svg { display: block; width: calc(14 * var(--s)); height: calc(13 * var(--s)); fill: currentColor; }
+.lib-view__b.is-on, .lib-view__b:hover { color: var(--black); }
+
+/* cards */
+.lib-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  column-gap: calc(8.5 * var(--s)); row-gap: calc(15 * var(--s));
+  margin-top: calc(11 * var(--s));
+}
+.lib-card {
+  position: relative; aspect-ratio: 345 / 187;
+  display: flex; flex-direction: column;
+  padding: calc(11 * var(--s)) calc(14 * var(--s)) calc(10 * var(--s));
+  background: var(--c); color: var(--black);
+}
+.lib-card[data-href] { cursor: pointer; transition: filter 0.2s ease; }
+.lib-card[data-href]:hover { filter: brightness(0.94); }
+.lib-card__top { display: flex; justify-content: space-between; }
+.lib-card__r { display: flex; gap: calc(6 * var(--s)); }
+.lib-card__t { margin-top: calc(21 * var(--s)); font-size: calc(25 * var(--s)); font-weight: 600; line-height: 1.2; }
+.lib-card__bot { margin-top: auto; display: flex; justify-content: space-between; font-size: max(11px, calc(14 * var(--s))); font-weight: 500; line-height: 1.6; }
+
+.lib-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: calc(27 * var(--s)); min-height: 20px; padding: 0 calc(7 * var(--s));
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font: inherit; font-size: max(12px, calc(17 * var(--s))); font-weight: 500; line-height: 1; white-space: nowrap;
+}
+button.lib-chip { cursor: pointer; }
+button.lib-chip:not(.lib-x):hover { background: var(--black); color: var(--white); }
+.lib-x { width: calc(24 * var(--s)); min-width: 20px; padding: 0; }
+
+/* list */
+.lib-list { margin-top: calc(11 * var(--s)); }
+.lib-list[hidden], .lib-cards[hidden] { display: none; }
+.lib-row {
+  position: relative; height: calc(39 * var(--s));
+  font-size: max(12px, calc(17 * var(--s))); line-height: 1;
+}
+.lib-row::after { content: ""; position: absolute; left: 0; bottom: 0; width: calc(902 * var(--s)); height: 1px; background: var(--black); }
+.lib-row--head { font-weight: 600; }
+.lib-row--head::before { content: ""; position: absolute; left: 0; top: 0; width: calc(902 * var(--s)); height: 1px; background: var(--black); }
+/* columns, centred on the design's x (from the list's left edge) */
+.lib-row > span:not(.lib-act) { position: absolute; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.lib-row > span:nth-child(1) { left: calc(34 * var(--s)); }
+.lib-row > span:nth-child(2) { left: calc(217.5 * var(--s)); }
+.lib-row > span:nth-child(3) { left: calc(451 * var(--s)); }
+.lib-row > span:nth-child(4) { left: calc(677 * var(--s)); }
+.lib-row > span:nth-child(5) { left: calc(836 * var(--s)); }
+.lib-act { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; gap: calc(18 * var(--s)); }
+.lib-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: calc(73 * var(--s)); height: calc(27 * var(--s)); min-height: 20px;
+  border: 1px solid var(--black); background: var(--white); color: var(--black);
+  font: inherit; font-size: max(11px, calc(15 * var(--s))); font-weight: 500; cursor: pointer; white-space: nowrap;
+}
+.lib-btn:not(.is-off):hover { background: var(--black); color: var(--white); }
+.lib-btn.is-off { border-color: #8c8c8c; color: #8c8c8c; cursor: default; }
+
+.lib-foot { padding-top: 0; }
+.lib-foot .footer__copy { border-top: 0; }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MY ARCHIVE — MATERIAL MEDIA</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="myarchive.css?v=39">
+<link rel="stylesheet" href="myupload.css?v=56">
+</head>
+<body class="page-myarchive">
+<div class="ma">
+
+  <!-- header -->
+  <header class="lnb">
+    <!-- 마이 아카이브 홈 화면 (페이지가 생기면 href만 바꾸면 됨) -->
+    <a class="box-btn box-btn--blue" href="myarchive-login.html" data-goto="archive-home">MATERIAL MEDIA ARCHIVE</a>
+    <nav class="lnb__nav">
+      <a class="box-btn box-btn--blue" href="#" data-goto="myarchive-home">My Archive</a>
+    </nav>
+  </header>
+
+  <!-- progress bar -->
+  <div class="ma-steps">
+    <ol class="steps" aria-label="아카이브 진행 단계">
+      <li class="step-chip is-current" aria-current="step">Get Started</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Collections List</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Upload</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Details</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Provenance</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Submit</li>
+    </ol>
+  </div>
+
+  <!-- soft gradient + login card -->
+  <main class="ma-stage">
+    <div class="ma-glow" aria-hidden="true"><i></i><i></i><i></i></div>
+
+    <form class="login" id="loginForm" autocomplete="off">
+      <h1 class="login__title">머티리얼 미디어 아카이브입니다.</h1>
+
+      <div class="field">
+        <label class="field__label" for="f-name">작가명</label>
+        <input class="input" id="f-name" type="text" placeholder="이름">
+      </div>
+      <div class="field">
+        <label class="field__label" for="f-email">이메일</label>
+        <input class="input" id="f-email" type="email" placeholder="이메일을 입력하세요.">
+      </div>
+      <div class="field">
+        <label class="field__label" for="f-org">소속(개인)</label>
+        <div class="input-wrap">
+          <input class="input input--pick" id="f-org" type="text" placeholder="소속을 입력해주세요." readonly title="돋보기를 눌러 검색해 주세요.">
+          <button class="search-btn" type="button" id="orgSearch" aria-label="소속 검색">
+            <svg viewBox="0 0 18 18" fill="none" stroke="#000" stroke-width="1.8"><circle cx="7.5" cy="7.5" r="6"/><path d="M12 12l5 5"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field__label" for="f-pw">비밀번호</label>
+        <div class="pw-row">
+          <input class="input" id="f-pw" type="password" placeholder="비밀번호를 입력해주세요.">
+          <button class="ghost-btn" type="button">비밀번호 찾기</button>
+        </div>
+      </div>
+
+      <div class="login__rule"></div>
+      <button class="login__submit" type="submit">로그인</button>
+    </form>
+  </main>
+
+  <p class="ma-foot">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+</div>
+
+<!-- address search layer -->
+<div class="addr-layer" id="addrLayer" aria-hidden="true">
+  <div class="addr-box" role="dialog" aria-label="소속 검색">
+    <div class="addr-box__head"><span>소속 검색</span><button class="addr-box__close" type="button" id="addrClose" aria-label="닫기">×</button></div>
+    <div class="addr-box__search">
+      <input type="search" id="orgQuery" placeholder="미술관 · 갤러리 이름을 입력하세요 (예: 국제갤러리)" autocomplete="off">
+    </div>
+    <ul class="org-list" id="orgList"></ul>
+  </div>
+</div>
+
+<script src="orgs.js?v=40"></script>
+<script src="sitenav.js?v=3"></script>
+<script src="main.js?v=73"></script>
+<script src="myarchive.js?v=72"></script>
+<script src="maglow.js?v=7"></script>
+</body>
+</html>

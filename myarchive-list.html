@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 소장품 관리 — MATERIAL MEDIA ARCHIVE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="myarchive.css?v=39">
+<link rel="stylesheet" href="mylist.css?v=32">
+<link rel="stylesheet" href="myupload.css?v=56">
+</head>
+<body class="page-myarchive page-mylist">
+<div class="ma">
+
+  <!-- header -->
+  <header class="lnb">
+    <a class="box-btn box-btn--blue" href="myarchive-login.html" data-goto="archive-home">MATERIAL MEDIA ARCHIVE</a>
+    <nav class="lnb__nav">
+      <a class="box-btn box-btn--blue" href="#" data-goto="myarchive-home">My Archive</a>
+    </nav>
+  </header>
+
+  <!-- progress bar -->
+  <div class="ma-steps">
+    <ol class="steps" aria-label="아카이브 진행 단계">
+      <li class="step-chip is-current">Get Started</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current" aria-current="step">Collections List</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Upload</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Details</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Provenance</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Submit</li>
+    </ol>
+  </div>
+
+  <div class="ml">
+    <!-- ===== sidebar ===== -->
+    <aside class="ml-side">
+      <h1 class="ml-name" id="userName">홍길동</h1>
+      <ul class="ml-meta">
+        <li><span>소속</span><i></i><span id="userOrg">갤러리 서울</span></li>
+        <li><span>내 소장품</span><i></i><span>05개</span></li>
+      </ul>
+      <div class="ml-account">
+        <a class="pill-btn pill-btn--hover" href="myarchive-login.html" id="logoutBtn">로그아웃</a>
+        <span class="pill-btn">개인정보 변경</span>
+      </div>
+
+      <div class="ml-rule"></div>
+
+      <div class="ml-cards">
+        <div class="stat-card stat-card--main"><div class="stat-card__in"><p class="stat-card__k">전체 소장품</p><p class="stat-card__n">05</p><p class="stat-card__d">반입 예정 작품들</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">진행 중</p><p class="stat-card__n">03</p><p class="stat-card__d">입력·대기·심사</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">완료</p><p class="stat-card__n">01</p><p class="stat-card__d">Datacenter 업로드 예정</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">반려</p><p class="stat-card__n">01</p><p class="stat-card__d">재심사 필요</p></div></div>
+      </div>
+
+      <h2 class="ml-h2">단계별 상태</h2>
+
+      <div class="track">
+        <div class="track__head"><span>접수 현황</span><span>4건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:143"></i><i class="c2" style="flex:69"></i><i class="c3" style="flex:106"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>대기<em>2</em></span><span><b class="c2"></b>심사<em>1</em></span><span><b class="c3"></b>반려<em>1</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>심사 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>심사중<em>1</em></span><span><b class="c2"></b>재심중<em>0</em></span><span><b class="c3"></b>총평중<em>0</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>재심 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>수정<em>1</em></span><span><b class="c3"></b>통과<em>0</em></span></div>
+      </div>
+    </aside>
+
+    <!-- ===== collection list ===== -->
+    <main class="ml-main">
+      <div class="ml-tools">
+        <div class="state" id="state">
+          <button class="state__btn" type="button" id="stateBtn" aria-haspopup="listbox" aria-expanded="false">
+            <span id="stateLabel">State</span>
+            <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1.5l5 5 5-5"/></svg>
+          </button>
+          <ul class="state__menu" id="stateMenu" role="listbox" hidden>
+            <li><button type="button" data-state="전체">전체</button></li>
+            <li><button type="button" data-state="미작성">미작성</button></li>
+            <li><button type="button" data-state="대기중">대기중</button></li>
+            <li><button type="button" data-state="심사중">심사중</button></li>
+            <li><button type="button" data-state="반려">반려</button></li>
+            <li><button type="button" data-state="완료">완료</button></li>
+          </ul>
+        </div>
+        <label class="search">
+          <input type="search" id="searchInput" placeholder="검색어를 입력하세요" autocomplete="off">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="1.3"><circle cx="5" cy="5" r="4"/><path d="M8 8l3.4 3.4"/></svg>
+        </label>
+      </div>
+
+      <h2 class="ml-title">내 소장품 관리</h2>
+
+      <div class="table" role="table">
+        <div class="tr tr--head" role="row">
+          <div class="tr__cells"><span role="columnheader">상태</span><span role="columnheader">작품명</span><span role="columnheader">작성/수정일시</span><span role="columnheader">심사결과</span></div>
+        </div>
+        <div id="rows"></div>
+      </div>
+    </main>
+  </div>
+
+  <p class="ma-foot">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+</div>
+
+<script src="sitenav.js?v=3"></script>
+<script src="main.js?v=73"></script>
+<script src="myarchive.js?v=72"></script>
+</body>
+</html>

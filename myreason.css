@@ -1,0 +1,46 @@
+/* MY ARCHIVE — review result (Figma "아카이브-반려사유", 873:1413). Main column = x 380–1421 (1041). */
+
+.page-reason .ml-main { padding: calc(33 * var(--u)) calc(19 * var(--u)) calc(60 * var(--u)) calc(19 * var(--u)); overflow-y: auto; }
+
+/* shared: centred cells on one line (Figma text centres) */
+.rv-rhead, .rv-rrow, .rv-head { position: relative; font-size: var(--t17); }
+.rv-rhead > span, .rv-rrow > span, .rv-head > span { position: absolute; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.rv-rhead, .rv-head { height: calc(30 * var(--u)); font-weight: 600; border-bottom: 1px solid var(--black); }
+.rv-rrow { height: calc(39 * var(--u)); font-weight: 400; border-bottom: 1px solid var(--black); }
+
+/* 심사 결과: 상태 c426 · 작품명 c664 · 작성/수정일시 c1012 · 심사결과 c1278 */
+.rv-result { margin-top: calc(26 * var(--u)); }
+.rv-rhead > span:nth-child(1), .rv-rrow > span:nth-child(1) { left: 4.42%; }
+.rv-rhead > span:nth-child(2), .rv-rrow > span:nth-child(2) { left: 27.28%; }
+.rv-rhead > span:nth-child(3), .rv-rrow > span:nth-child(3) { left: 60.76%; }
+.rv-rhead > span:nth-child(4), .rv-rrow > span:nth-child(4) { left: 86.26%; }
+
+/* 심사 정보 */
+.rv-sec { margin-top: calc(39 * var(--u)); }
+.rv-tabs { display: flex; gap: calc(8 * var(--u)); margin-top: calc(26 * var(--u)); }
+.rv-tab {
+  height: calc(27 * var(--u)); padding: 0 calc(7 * var(--u));
+  border: 1px solid var(--gray); color: var(--gray); background: var(--white);
+  font-size: var(--t17); font-weight: 500; white-space: nowrap;
+}
+.rv-tab.is-on { background: var(--archive); border-color: var(--archive); color: var(--white); }
+
+/* 순서 c426 · 부문 c541 · 수정요청사항 c1016 */
+.rv-head { margin-top: calc(26 * var(--u)); }
+.rv-head > span:nth-child(1) { left: 4.42%; }
+.rv-head > span:nth-child(2) { left: 15.47%; }
+.rv-head > span:nth-child(3) { left: 61.14%; }
+
+.rv-row { position: relative; padding-left: 22.29%;   /* Figma 232 of 1041 — in % so it follows the column width like the other cells */ margin-top: calc(22 * var(--u)); }
+.rv-row:first-child { margin-top: calc(8 * var(--u)); }
+.rv-no, .rv-part { position: absolute; top: calc(1 * var(--u)); transform: translateX(-50%); font-size: var(--t17); font-weight: 400; line-height: calc(20 * var(--u)); }
+.rv-no { left: 4.42%; }
+.rv-part { left: 15.47%; display: flex; flex-direction: column; align-items: center; gap: calc(11 * var(--u)); white-space: nowrap; }
+.rv-fix { width: calc(73 * var(--u)); }
+.rv-req {
+  min-height: calc(121 * var(--u)); padding: calc(9 * var(--u)) calc(12 * var(--u));
+  border: 0.5px solid var(--black); border-radius: calc(9 * var(--u)); background: var(--white);
+  font-size: var(--t17); font-weight: 400; line-height: calc(25.5 * var(--u));
+  display: flex; align-items: center;
+}
+.rv-list--empty p { padding: calc(30 * var(--u)) 0; text-align: center; color: var(--gray); font-size: var(--t17); }

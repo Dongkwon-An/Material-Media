@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작품 업로드 — MATERIAL MEDIA ARCHIVE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="myarchive.css?v=39">
+<link rel="stylesheet" href="mylist.css?v=32">
+<link rel="stylesheet" href="myupload.css?v=56">
+</head>
+<body class="page-myarchive page-mylist page-upload">
+<div class="ma">
+
+  <!-- header -->
+  <header class="lnb">
+    <a class="box-btn box-btn--blue" href="myarchive-login.html" data-goto="archive-home">MATERIAL MEDIA ARCHIVE</a>
+    <nav class="lnb__nav">
+      <a class="box-btn box-btn--blue" href="#" data-goto="myarchive-home">My Archive</a>
+    </nav>
+  </header>
+
+  <!-- progress bar -->
+  <div class="ma-steps">
+    <ol class="steps" aria-label="아카이브 진행 단계">
+      <li class="step-chip is-current">Get Started</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Collections List</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current" aria-current="step">Upload</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Details</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Provenance</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Submit</li>
+    </ol>
+    <div class="steps-actions">
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="saveBtn">Save</button>
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="backBtn">Back</button>
+    </div>
+  </div>
+
+  <div class="ml">
+    <aside class="ml-side">
+      <h1 class="ml-name" id="userName">홍길동</h1>
+      <ul class="ml-meta">
+        <li><span>소속</span><i></i><span id="userOrg">갤러리 서울</span></li>
+        <li><span>내 소장품</span><i></i><span>05개</span></li>
+      </ul>
+      <div class="ml-account">
+        <a class="pill-btn pill-btn--hover" href="myarchive-login.html" id="logoutBtn">로그아웃</a>
+        <span class="pill-btn">개인정보 변경</span>
+      </div>
+
+      <div class="ml-rule"></div>
+
+      <div class="ml-cards">
+        <div class="stat-card stat-card--main"><div class="stat-card__in"><p class="stat-card__k">전체 소장품</p><p class="stat-card__n">05</p><p class="stat-card__d">반입 예정 작품들</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">진행 중</p><p class="stat-card__n">03</p><p class="stat-card__d">입력·대기·심사</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">완료</p><p class="stat-card__n">01</p><p class="stat-card__d">Datacenter 업로드 예정</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">반려</p><p class="stat-card__n">01</p><p class="stat-card__d">재심사 필요</p></div></div>
+      </div>
+
+      <h2 class="ml-h2">단계별 상태</h2>
+
+      <div class="track">
+        <div class="track__head"><span>접수 현황</span><span>4건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:143"></i><i class="c2" style="flex:69"></i><i class="c3" style="flex:106"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>대기<em>2</em></span><span><b class="c2"></b>심사<em>1</em></span><span><b class="c3"></b>반려<em>1</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>심사 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>심사중<em>1</em></span><span><b class="c2"></b>재심중<em>0</em></span><span><b class="c3"></b>총평중<em>0</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>재심 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>수정<em>1</em></span><span><b class="c3"></b>통과<em>0</em></span></div>
+      </div>
+    </aside>
+
+    <!-- ===== upload form ===== -->
+    <main class="ml-main up">
+
+      <!-- 작품 유형 선택 -->
+      <section class="up-sec">
+        <h2 class="up-h">작품 유형 선택</h2>
+        <div class="types">
+          <label class="type"><span>영상·사운드</span><input type="checkbox" name="type" value="영상·사운드"><i></i></label>
+          <label class="type"><span>소프트웨어 기반</span><input type="checkbox" name="type" value="소프트웨어 기반"><i></i></label>
+          <label class="type"><span>네트워크 기반</span><input type="checkbox" name="type" value="네트워크 기반"><i></i></label>
+          <label class="type"><span>라이트·키네틱</span><input type="checkbox" name="type" value="라이트·키네틱"><i></i></label>
+          <label class="type"><span>퍼포먼스</span><input type="checkbox" name="type" value="퍼포먼스"><i></i></label>
+          <label class="type"><span>디지털 이미지</span><input type="checkbox" name="type" value="디지털 이미지"><i></i></label>
+        </div>
+      </section>
+
+      <!-- 작품 업로드 -->
+      <section class="up-sec up-sec--works">
+        <h2 class="up-h">작품 업로드 <small>같은 작품이라도 쓰임이 다른 세 가지 버전으로 보관됩니다. 원본 하나만 올리면 공개용은 자동으로 만들어집니다.</small></h2>
+        <div class="versions">
+          <div class="ver">
+            <p class="ver__t">*마스터본(필수)</p>
+            <p class="ver__d">원본 파일입니다. 비공개로 보존·복원으로만 쓰입니다.</p>
+            <label class="drop" data-kind="file">
+              <input type="file" accept=".mp4,.wav,video/mp4,audio/wav,audio/x-wav" hidden>
+              <svg class="up-ico" viewBox="0 0 22 27" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"><path d="M1 1h13l7 7v18H1z"/><path d="M14 1v7h7"/><path d="M11 21v-9M7.5 15.5 11 12l3.5 3.5"/></svg>
+              <span class="drop__name"></span>
+            </label>
+          </div>
+          <div class="ver">
+            <p class="ver__t">전시본(선택)</p>
+            <p class="ver__d">전시장 상영에 맞춘 버전입니다.</p>
+            <label class="drop" data-kind="file">
+              <input type="file" accept=".mp4,.wav,video/mp4,audio/wav,audio/x-wav" hidden>
+              <svg class="up-ico" viewBox="0 0 22 27" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"><path d="M1 1h13l7 7v18H1z"/><path d="M14 1v7h7"/><path d="M11 21v-9M7.5 15.5 11 12l3.5 3.5"/></svg>
+              <span class="drop__name"></span>
+            </label>
+          </div>
+          <div class="ver">
+            <p class="ver__t">열람본(자동)</p>
+            <p class="ver__d">온라인 수장고에 쓰일 파일입니다.</p>
+            <label class="drop" data-kind="file">
+              <input type="file" accept=".mp4,.wav,video/mp4,audio/wav,audio/x-wav" hidden>
+              <svg class="up-ico" viewBox="0 0 22 27" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"><path d="M1 1h13l7 7v18H1z"/><path d="M14 1v7h7"/><path d="M11 21v-9M7.5 15.5 11 12l3.5 3.5"/></svg>
+              <span class="drop__name"></span>
+            </label>
+          </div>
+        </div>
+        <p class="why"><b class="why__q">?</b>왜 세 버전으로 나눌까요?</p>
+        <p class="why__a">원본은 그대로 지키고, 전시 환경에 맞춰 틀고, 누구나 가볍게 보도록 쓰임을 나누면 어떤 상황에서도 작품을 다시 구현할 수 있습니다.</p>
+      </section>
+
+      <!-- 스틸컷 업로드 -->
+      <section class="up-sec up-sec--stills">
+        <h2 class="up-h">스틸컷 업로드 <small>JPG, PNG, WebP 파일만 업로드 가능합니다. (최대 3장)</small></h2>
+        <div class="stills" id="stills">
+          <input type="file" id="stillInput" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
+          <div class="stills__thumbs" id="stillThumbs"></div>
+          <button class="stills__add" type="button" id="stillAdd" aria-label="스틸컷 추가"><svg class="up-ico" viewBox="0 0 22 27" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"><path d="M1 1h13l7 7v18H1z"/><path d="M14 1v7h7"/><path d="M11 21v-9M7.5 15.5 11 12l3.5 3.5"/></svg><span class="drop__name" id="stillCount"></span></button>
+        </div>
+      </section>
+
+      <!-- 추가 자료 업로드 -->
+      <section class="up-sec up-sec--docs">
+        <h2 class="up-h up-h--bold">추가 자료 업로드 <small>작품을 다시 설치하고 재현하는 데 도움이 되는 자료를 올려 주세요. 지금 남겨두면 훗날 작가가 함께하지 않아도 작품을 원래 모습대로 되살릴 수 있습니다.</small></h2>
+        <div class="chips">
+          <span>작가 CV</span><span>설치 지침서</span><span>전시 도면</span><span>설치 사진</span><span>작가 노트</span><span>장비 사양</span><span>기타</span>
+        </div>
+        <div class="dtable">
+          <div class="drow drow--head"><div class="drow__cells"><span>파일</span><span>파일명</span><span>업로드 일시</span></div></div>
+          <div id="docRows"></div>
+        </div>
+        <input type="file" id="docInput" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+        <div class="doc-actions">
+          <button class="pill-gray" type="button" id="docUpload">업로드</button>
+          <label class="switch">
+            <input type="checkbox" id="aiSwitch">
+            <i></i>
+            <span>AI로 작성합니다.</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 권리 동의 -->
+      <section class="up-sec up-sec--terms">
+        <h2 class="up-h">권리 동의 <span class="up-h__b">(필수)</span></h2>
+        <div class="terms" id="terms">
+          <div class="term"><p class="term__t">제1조) 보존 관리를 위한 작품 복제 동의</p><p class="term__b">작가는 작품의 안전한 보존을 위하여, 기관이 원본과 동일한 복제본을 복수로 제작하여 분산 보관하는 것에 동의합니다. 복제본은 보존 및 복원 목적으로만 사용되며, 별도의 동의 없이 외부에 공개·배포되지 않습니다.</p></div>
+          <div class="term"><p class="term__t">제2조) 새로운 포맷으로부터의 마이그레이션 동의</p><p class="term__b">작가는 기술 환경의 변화로 기존 파일 포맷 또는 코덱의 재생이 곤란해질 경우, 기관이 원본을 그대로 보존한 상태에서 재생 가능한 새로운 포맷으로 작품을 변환(마이그레이션)하는 것에 동의합니다. 변환은 작품의 원형과 작가의 의도를 최대한 유지하는 범위에서 시행합니다.</p></div>
+          <div class="term"><p class="term__t">제3조) 기관 홈페이지 및 소셜미디어에 작품 또는 일부 스트리밍/웹캐스트 동의</p><p class="term__b">작가는 기관이 작품의 전부 또는 일부를 기관 홈페이지 및 소셜미디어를 통하여 스트리밍 또는 웹캐스트 방식으로 공개하는 것에 동의합니다. 공개의 범위와 수준은 작가가 지정한 설정에 따릅니다.</p></div>
+          <div class="term"><p class="term__t">제4조) 전시본 파일 생산 동의 (상영 목적 하부 권리 포함)</p><p class="term__b">작가는 전시 및 상영을 위하여, 기관이 전시 환경에 맞춘 전시본 파일을 제작하고, 상영 목적 범위 내에서 이에 부수하는 하부 권리(포맷·해상도 조정, 자막 삽입 등)를 행사하는 것에 동의합니다.</p></div>
+          <div class="term"><p class="term__t">제5조) 기존 매체 확보 불가 시 대안 처리 동의</p><p class="term__b">작가는 작품 구현에 필요한 기존 매체·장비·소프트웨어의 확보가 불가능해질 경우, 기관이 작가의 의도를 최대한 보존하는 범위에서 에뮬레이션, 대체 장비, 재제작 등 대안적 방식으로 작품을 처리하는 것에 동의합니다. 기관은 가능한 한 사전에 작가와 협의합니다.</p></div>
+        </div>
+        <button class="pill-gray" type="button" id="agreeBtn" aria-pressed="false">약관동의</button>
+      </section>
+
+      <div class="up-next">
+        <button class="next-btn" type="button" id="nextBtn" disabled>Next</button>
+      </div>
+    </main>
+  </div>
+
+  <p class="ma-foot">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="sitenav.js?v=3"></script>
+<script src="main.js?v=73"></script>
+<script src="myarchive.js?v=72"></script>
+</body>
+</html>

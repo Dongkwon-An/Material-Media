@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작품 상세 정보 — MATERIAL MEDIA ARCHIVE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="myarchive.css?v=39">
+<link rel="stylesheet" href="mylist.css?v=32">
+<link rel="stylesheet" href="myupload.css?v=56">
+<link rel="stylesheet" href="mydetails.css?v=6">
+</head>
+<body class="page-myarchive page-mylist page-upload page-details">
+<div class="ma">
+
+  <!-- header -->
+  <header class="lnb">
+    <a class="box-btn box-btn--blue" href="myarchive-login.html" data-goto="archive-home">MATERIAL MEDIA ARCHIVE</a>
+    <nav class="lnb__nav">
+      <a class="box-btn box-btn--blue" href="#" data-goto="myarchive-home">My Archive</a>
+    </nav>
+  </header>
+
+  <!-- progress bar -->
+  <div class="ma-steps">
+    <ol class="steps" aria-label="아카이브 진행 단계">
+      <li class="step-chip is-current">Get Started</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Collections List</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current">Upload</li>
+      <li class="step-line is-done" aria-hidden="true"></li>
+      <li class="step-chip is-current" aria-current="step">Details</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Provenance</li>
+      <li class="step-line" aria-hidden="true"></li>
+      <li class="step-chip">Submit</li>
+    </ol>
+    <div class="steps-actions">
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="saveBtn">Save</button>
+      <button class="box-btn box-btn--sm box-btn--fill" type="button" id="backBtn">Back</button>
+    </div>
+  </div>
+
+  <div class="ml">
+    <aside class="ml-side">
+      <h1 class="ml-name" id="userName">홍길동</h1>
+      <ul class="ml-meta">
+        <li><span>소속</span><i></i><span id="userOrg">갤러리 서울</span></li>
+        <li><span>내 소장품</span><i></i><span>05개</span></li>
+      </ul>
+      <div class="ml-account">
+        <a class="pill-btn pill-btn--hover" href="myarchive-login.html" id="logoutBtn">로그아웃</a>
+        <span class="pill-btn">개인정보 변경</span>
+      </div>
+
+      <div class="ml-rule"></div>
+
+      <div class="ml-cards">
+        <div class="stat-card stat-card--main"><div class="stat-card__in"><p class="stat-card__k">전체 소장품</p><p class="stat-card__n">05</p><p class="stat-card__d">반입 예정 작품들</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">진행 중</p><p class="stat-card__n">03</p><p class="stat-card__d">입력·대기·심사</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">완료</p><p class="stat-card__n">01</p><p class="stat-card__d">Datacenter 업로드 예정</p></div></div>
+        <div class="stat-card"><div class="stat-card__in"><p class="stat-card__k">반려</p><p class="stat-card__n">01</p><p class="stat-card__d">재심사 필요</p></div></div>
+      </div>
+
+      <h2 class="ml-h2">단계별 상태</h2>
+
+      <div class="track">
+        <div class="track__head"><span>접수 현황</span><span>4건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:143"></i><i class="c2" style="flex:69"></i><i class="c3" style="flex:106"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>대기<em>2</em></span><span><b class="c2"></b>심사<em>1</em></span><span><b class="c3"></b>반려<em>1</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>심사 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>심사중<em>1</em></span><span><b class="c2"></b>재심중<em>0</em></span><span><b class="c3"></b>총평중<em>0</em></span></div>
+      </div>
+      <div class="track">
+        <div class="track__head"><span>재심 현황</span><span>1건</span></div>
+        <div class="track__bar"><i class="c1" style="flex:1"></i></div>
+        <div class="track__chips"><span><b class="c1"></b>수정<em>1</em></span><span><b class="c3"></b>통과<em>0</em></span></div>
+      </div>
+    </aside>
+
+    <!-- ===== upload form ===== -->
+    <main class="ml-main up dt">
+
+      <!-- 기본 정보 -->
+      <section class="up-sec">
+        <h2 class="up-h">기본 정보 <small>메타데이터 파서기가 추출한 정보는 회색 셀로 작성됩니다.</small></h2>
+        <div class="fgrid">
+        <div class="frow" style="--top:0">
+          <div class="fld" data-key="title" data-kind="text" style="--x:0;--w:338"><span class="fld__l">소장품명</span></div>
+          <div class="fld" data-key="artistKo" data-kind="text" style="--x:384;--w:136"><span class="fld__l">작가명(국문)</span></div>
+          <div class="fld" data-key="artistEn" data-kind="text" style="--x:586;--w:163"><span class="fld__l">작가명(영문)</span></div>
+          <div class="fld" data-key="year" data-kind="year" style="--x:788;--w:136"><span class="fld__l">제작연도</span></div>
+        </div>
+        <div class="frow" style="--top:86">
+          <div class="fld" data-key="material" data-kind="text" style="--x:0;--w:338"><span class="fld__l">주재료</span></div>
+          <div class="fld" data-key="type" data-kind="select" data-options="영상·사운드|소프트웨어 기반|네트워크 기반|라이트·키네틱|퍼포먼스|디지털 이미지" style="--x:384;--w:136"><span class="fld__l">작품유형</span></div>
+          <div class="fld" data-key="tech" data-kind="text" style="--x:586;--w:163"><span class="fld__l">기술명칭</span></div>
+          <div class="fld" data-key="edition" data-kind="text" style="--x:788;--w:136"><span class="fld__l">에디션</span></div>
+        </div>
+        <div class="frow" style="--top:172">
+          <div class="fld" data-key="channel" data-kind="select" data-options="단채널|2채널|3채널|4채널|직접 입력" style="--x:0;--w:136"><span class="fld__l">채널수</span></div>
+          <div class="fld" data-key="audio" data-kind="select" data-options="사운드|무음" style="--x:189;--w:136"><span class="fld__l">음향정보</span></div>
+          <div class="fld" data-key="color" data-kind="select" data-options="흑백|컬러" style="--x:384;--w:136"><span class="fld__l">색상정보</span></div>
+          <div class="fld" data-key="duration" data-kind="text" style="--x:586;--w:163"><span class="fld__l">영상길이</span></div>
+          <div class="fld" data-key="link" data-kind="text" style="--x:788;--w:136"><span class="fld__l">연관링크</span></div>
+        </div>
+        </div>
+      </section>
+
+      <!-- 작품 사양 -->
+      <section class="up-sec dt-sec--spec">
+        <h2 class="up-h">작품 사양</h2>
+        <div class="fgrid fgrid--2">
+        <div class="frow" style="--top:0">
+          <div class="fld" data-key="size" data-kind="text" style="--x:0;--w:136"><span class="fld__l">작품 크기</span></div>
+          <div class="fld" data-key="format" data-kind="text" style="--x:189;--w:136"><span class="fld__l">파일 형식</span></div>
+          <div class="fld" data-key="resolution" data-kind="text" style="--x:384;--w:136"><span class="fld__l">해상도</span></div>
+          <div class="fld" data-key="player" data-kind="text" style="--x:586;--w:136"><span class="fld__l">재생구현장치</span></div>
+          <div class="fld" data-key="camera" data-kind="text" style="--x:788;--w:136"><span class="fld__l">촬영장비</span></div>
+        </div>
+        <div class="frow" style="--top:84">
+          <div class="fld" data-key="editor" data-kind="text" style="--x:0;--w:136"><span class="fld__l">편집 프로그램</span></div>
+          <div class="fld" data-key="software" data-kind="text" style="--x:189;--w:136"><span class="fld__l">소프트웨어 정보</span></div>
+          <div class="fld" data-key="power" data-kind="text" style="--x:384;--w:136"><span class="fld__l">전력 사양</span></div>
+          <div class="fld" data-key="sensor" data-kind="text" style="--x:586;--w:136"><span class="fld__l">센서 교체 주기</span></div>
+          <div class="fld" data-key="lens" data-kind="text" style="--x:788;--w:136"><span class="fld__l">렌즈</span></div>
+        </div>
+        </div>
+        <div class="dt-text">
+          <p class="dt-text__h">작품설명 <small>1000자 이내</small><em class="dt-count" id="descCount">0 / 1000</em></p>
+          <textarea class="dt-area dt-area--desc" id="desc" maxlength="1000" spellcheck="false" aria-label="작품설명" data-ai="나는 기성세대를 동경하면서도 경멸한다. 권위적이고 위선적인 모습은 싫어하지만 책임감과 강인함을 보여주는 모습은 부러워한다. 이러한 상반된 감정은 한국 사회가 오랫동안 남성에게 요구해온 모습과 맞닿아 있다. 과거에는 군인과 산업역군처럼 국가를 위해 싸우고 희생하는 남성이 이상적인 모습으로 제시됐다. 전쟁기념관의 청동상과 전쟁 영화 속 군인의 자세는 아버지의 군 복무 사진에 다시 나타났고, 그렇게 사진과 기억을 거쳐 다음 세대로 전해졌다. 오늘날에는 과거처럼 따라야 할 역할이 모호해졌지만, 우리는 여전히 과거의 이미지에서 남성의 모습을 찾는다. 나는 현재의 남성성이 정해진 대본 없이 과거의 모습을 따라 하며 이어지는 즉흥극과 같다고 생각한다.
+대본이 없다는 것은 어떤 역할을 해야 할지 불분명하다는 뜻이지만, 동시에 어떤 남성성을 이어가고 바꿀지 스스로 선택할 수 있다는 뜻이기도 하다. 그렇다면 사진과 이미지는 이러한 즉흥극을 인식하게 하고, 각자가 어떤 남성성을 수행할지 고민하도록 만들 수 있을까? 나는 이 질문에서 출발해 아버지의 군 복무 사진, 국가기록원의 푸티지, 선전 기념비, 고전 전쟁 영화 속 장면을 겹치고 편집한다. 기존 이미지에 새로운 대사와 내레이션을 붙이거나 서로 다른 장면을 연결해 익숙한 인물과 행동을 다른 맥락에 놓는다. 이미지를 고르고 재배치하는 과정은 내가 당연하게 받아들여 온 남성성을 다시 바라보는 일이자, 이미지가 새로운 의미와 가능성을 만들어내는 방식을 탐색하는 일이다. 나에게 이 작업은 남성성을 연기하는 무대이자, 내가 어떤 남성성을 연기하고 있는지 바라보는 객석이다. 나는 이 구조를 통해 이미지가 남성성에 대한 인식과 선택에 어떻게 개입할 수 있는지 질문하고, 그 가능성을 계속해서 실험하고자 한다."></textarea>
+          <p class="dt-ai"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#5b5b5b"/><rect x="9" y="8.6" width="2" height="6.4" fill="#fff"/><circle cx="10" cy="5.8" r="1.25" fill="#fff"/></svg>AI가 작성한 작품설명은 정확하지 않을 수 있습니다.</p>
+        </div>
+      </section>
+
+      <!-- 설치 지침 -->
+      <section class="up-sec dt-sec--install">
+        <h2 class="up-h">설치 지침</h2>
+        <div class="fgrid fgrid--4">
+        <div class="frow" style="--top:0">
+          <div class="fld" data-key="venue" data-kind="text" style="--x:0;--w:136"><span class="fld__l">전시장</span></div>
+          <div class="fld" data-key="venueSize" data-kind="text" style="--x:189;--w:163"><span class="fld__l">전시장 크기</span></div>
+          <div class="fld" data-key="objects" data-kind="text" style="--x:405;--w:338"><span class="fld__l">설치에 사용된 오브제</span></div>
+        </div>
+        <div class="frow" style="--top:84">
+          <div class="fld" data-key="monitor" data-kind="text" style="--x:0;--w:136"><span class="fld__l">모니터 사양</span></div>
+          <div class="fld" data-key="speaker" data-kind="text" style="--x:189;--w:136"><span class="fld__l">스피커 사양</span></div>
+        </div>
+        <div class="frow" style="--top:168">
+          <div class="fld" data-key="loudness" data-kind="text" style="--x:0;--w:136"><span class="fld__l">음량 기준</span></div>
+          <div class="fld" data-key="soundproof" data-kind="select" data-options="필수|상관없음" style="--x:189;--w:136"><span class="fld__l">방음 여부</span></div>
+          <div class="fld" data-key="special" data-kind="text" style="--x:405;--w:338"><span class="fld__l">특수조건</span></div>
+        </div>
+        <div class="frow" style="--top:252">
+          <div class="fld" data-key="loop" data-kind="select" data-options="필수|타임라인|직접 입력" style="--x:0;--w:136"><span class="fld__l">루프 여부</span></div>
+          <div class="fld" data-key="order" data-kind="text" style="--x:189;--w:136"><span class="fld__l">재생 순서</span></div>
+        </div>
+        </div>
+        <div class="dt-text dt-text--extra">
+          <p class="dt-text__h">추가사항 <small>1000자 이내</small><em class="dt-count" id="extraCount">0 / 1000</em></p>
+          <textarea class="dt-area" id="extra" maxlength="1000" aria-label="추가사항"></textarea>
+        </div>
+
+        <div class="dt-docs" data-docs="budget">
+          <p class="dt-text__h">예산안</p>
+          <div class="dtable">
+            <div class="drow drow--head"><div class="drow__cells"><span>파일</span><span>파일명</span><span>업로드 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+
+        <div class="dt-docs" data-docs="plan">
+          <p class="dt-text__h">설치도면</p>
+          <div class="dtable">
+            <div class="drow drow--head"><div class="drow__cells"><span>파일</span><span>파일명</span><span>업로드 일시</span></div></div>
+            <div class="dt-rows"></div>
+          </div>
+          <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+          <button class="pill-gray dt-up" type="button">업로드</button>
+        </div>
+      </section>
+
+      <!-- 전시장 스틸컷 -->
+      <section class="up-sec dt-sec--venue">
+        <h2 class="up-h">전시장 스틸컷 업로드 <small>JPG, PNG, WebP 파일만 업로드 가능합니다. (최대 3장)</small></h2>
+        <div class="stills" id="vStills">
+          <input type="file" id="vStillInput" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
+          <div class="stills__thumbs" id="vStillThumbs"></div>
+          <button class="stills__add" type="button" id="vStillAdd" aria-label="전시장 스틸컷 추가"><svg class="up-ico" viewBox="0 0 22 27" fill="none" stroke="#000" stroke-width="1.6" stroke-linejoin="round"><path d="M1 1h13l7 7v18H1z"/><path d="M14 1v7h7"/><path d="M11 21v-9M7.5 15.5 11 12l3.5 3.5"/></svg><span class="drop__name" id="vStillCount"></span></button>
+        </div>
+      </section>
+
+      <div class="up-next">
+        <button class="next-btn" type="button" id="dtNext" aria-disabled="true">Next</button>
+      </div>
+    </main>
+  </div>
+
+  <p class="ma-foot">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="sitenav.js?v=3"></script>
+<script src="main.js?v=73"></script>
+<script src="myarchive.js?v=72"></script>
+</body>
+</html>

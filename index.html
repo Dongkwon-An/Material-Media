@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MATERIAL MEDIA</title>
+<link rel="stylesheet" href="style.css?v=25">
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="part part--hero" id="top">
+  <header class="lnb">
+    <a class="box-btn" href="#top">MATERIAL MEDIA</a>
+    <nav class="lnb__nav">
+      <a class="box-btn" href="#datacenter">Datacenter</a>
+      <a class="box-btn" href="storage.html">Storage</a>
+      <a class="box-btn" href="myarchive-login.html">My Archive</a>
+    </nav>
+  </header>
+
+  <div class="carousel" id="carousel">
+    <div class="carousel__track" id="track"></div>
+  </div>
+  <div class="dots-row"><div class="dots" id="dots"></div></div>
+
+  <div class="hero__text">
+    <h1 class="hero__title">Every new media works, intact for posterity</h1>
+    <p class="hero__sub">New media art ecosystem</p>
+  </div>
+</section>
+
+<!-- 2. INTRO + 보존/아카이브 -->
+<section class="part intro">
+  <div class="split">
+    <div>
+      <h2 class="h2">우리는 뉴미디어가 미래세대에게<br>전달되도록 보존하고 아카이브합니다.</h2>
+      <div class="body">
+        <p>뉴미디어 작품은 어떤 방식으로 미래에 남아야 할까요?</p>
+        <p>예술은 당대에 머무르지 않습니다. 지금의 경험이 다음 세대로 이어질 때, 비로소 작품의 가치는 완성됩니다. 그러나 매체에 기대어 존재하는 뉴미디어는 시간이 흐를수록 변하고 손상되기 쉽습니다.</p>
+        <p>작가가 오래도록 바란 것은 자신의 의도가 변하지 않고 온전히 전달되는 것입니다. 우리는 그 바람을 기술을 넘어 태도로 다가섭니다. 무엇을 수장할지보다, 작품의 가치를 어떻게 이해하고 책임져야 할지를 먼저 생각합니다. 작품의 표면 대신 작가의 의도를, 한 번의 복제 대신 다시 펼쳐질 맥락을 지킵니다.</p>
+        <p>우리가 지켜낸 작품은 다음 세대에 전해집니다. 오늘의 뉴미디어가 먼 훗날 관람객에게 처음 그대로 전해질 때, 작품은 더 많은 이들의 문화가 됩니다.</p>
+        <p>모든 뉴미디어를 온전하게, 미래의 당신에게</p>
+      </div>
+    </div>
+    <!-- 6개 영상이 차례로 재생되고 계속 반복 (순서는 main.js의 INTRO_VIDEOS) -->
+    <div class="split__media intro__img intro__vid" id="introVid" aria-label="MATERIAL MEDIA 분야별 영상">
+      <video data-playlist muted playsinline preload="auto"></video>
+      <video data-playlist muted playsinline preload="auto"></video>
+    </div>
+  </div>
+
+  <div class="stats intro__stats">
+    <div><p class="stat-group">보존</p><p class="stat-label">클라우드 분산 저장</p><p class="stat-value">3개의 사본<br>2개의 지역</p></div>
+    <div><p class="stat-group">&nbsp;</p><p class="stat-label">해시값 부여 방식</p><p class="stat-value">작품 반입 시<br>즉시 해시값 부여</p></div>
+    <div><p class="stat-group">아카이브</p><p class="stat-label">단계별 아카이빙</p><p class="stat-value">작품 보존부터<br>전시 재현까지</p></div>
+    <div><p class="stat-group">&nbsp;</p><p class="stat-label">보이는 온라인 수장고</p><p class="stat-value">24/7<br>작품 열람</p></div>
+  </div>
+</section>
+
+<!-- 3. DATACENTER -->
+<section class="part dc" id="datacenter">
+  <div class="split">
+    <div>
+      <h2 class="big-word dc__word">DATACENTER</h2>
+      <p class="body">MATERIAL MEDIA는 작품을 국내 복수 거점에 분산 저장하고, 모든 파일을 암호화·해시 봉인해 위·변조를 상시 검증합니다. 권한 통제·자동 백업의 디지털 보안과 24시간 관제·생체 인증 출입·항온항습·전력 이중화의 물리 보안이 함께 작동해, 매체의 수명을 넘어 작품을 지켜냅니다.</p>
+      <div class="stats stats--2 dc__stats">
+        <div><p class="stat-group">보안</p><p class="stat-label">디지털 보안</p><p class="stat-value">제로 트러스트 방식<br>제로썸 체크 방식</p></div>
+        <div><p class="stat-group">&nbsp;</p><p class="stat-label">&nbsp;</p><p class="stat-value">고속 네트워크 구축<br>해시 앵커링 적용</p></div>
+      </div>
+    </div>
+    <div class="split__media dc__img"><img src="photo/datacenter.jpg" alt="데이터센터 서버실"></div>
+  </div>
+</section>
+
+<!-- 4. DATACENTER 1 : 대전 -->
+<section class="part dc1 gallery" data-gallery="dc1">
+  <div class="gallery__top">
+    <div class="gallery__main"><img alt=""></div>
+    <div class="gallery__text">
+      <p class="gallery__loc">대전광역시</p>
+      <p class="gallery__title"></p>
+      <p class="gallery__note" hidden></p>
+    </div>
+  </div>
+  <div class="thumbs"></div>
+</section>
+
+<!-- 5. DATACENTER 2 : 새만금 -->
+<section class="part dc2 gallery" data-gallery="dc2">
+  <div class="gallery__top">
+    <div class="gallery__main"><img alt=""></div>
+    <div class="gallery__text">
+      <p class="gallery__loc">전북 새만금</p>
+      <p class="gallery__title"></p>
+      <p class="gallery__note" hidden></p>
+    </div>
+  </div>
+  <div class="thumbs"></div>
+</section>
+
+<!-- 6. ARCHIVE -->
+<section class="part feature" id="archive">
+  <div class="feature__text">
+    <h2 class="big-word archive__word">ARCHIVE</h2>
+    <p class="body">MATERIAL MEDIA는 뉴미디어에 특화된 표준 아카이브 체계를 작가와 큐레이터에게 제공합니다. 체계적 단계와 표준 용어로 제각각이던 자료를 정리하고, 파일 메타데이터 자동 판독과 AI 초안으로 기입 부담을 줄이며, 설치 지침 가이드로 작가가 부재해도 재현·복원이 가능하도록 대비합니다.</p>
+    <div class="links">
+      <a class="link-btn link-btn--archive" href="archive.html">알아보기 <svg viewBox="0 0 18 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M0 8h16M9.5 1.5 16 8l-6.5 6.5"/></svg></a>
+      <a class="link-btn link-btn--archive" href="myarchive-login.html">마이 아카이브 <svg viewBox="0 0 18 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M0 8h16M9.5 1.5 16 8l-6.5 6.5"/></svg></a>
+    </div>
+  </div>
+  <div class="feature__video">
+    <video src="vedio/web/material-media_software_loop_20261116-231508.mp4" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+</section>
+
+<!-- 7. STORAGE -->
+<section class="part feature" id="storage">
+  <div class="feature__text">
+    <h2 class="big-word storage__word">STORAGE</h2>
+    <p class="body">MATERIAL MEDIA의 스토리지는 뉴미디어 소장품과 관련 아카이브 정보를 한 곳에 모아, 누구나 어디서든 작품을 열람하고 연구할 수 있게 합니다. 원본을 노출하지 않는 스트리밍으로 감상하고, 작품을 관련 아카이브로 연결해 맥락 있게 살펴봅니다. 공개범위를 조절해 열람을 운영하며, 분류·신소장품·컬렉션별 검색과 표준 작품 정보로 소장품을 체계적으로 열어 둡니다.</p>
+    <div class="links">
+      <a class="link-btn link-btn--storage" href="storage.html">바로가기 <svg viewBox="0 0 18 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M0 8h16M9.5 1.5 16 8l-6.5 6.5"/></svg></a>
+    </div>
+  </div>
+  <div class="feature__video">
+    <video src="vedio/web/material-media_moving_loop_20261116-232720.mp4" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+</section>
+
+<!-- 8. FOOTER -->
+<footer class="part part--footer">
+  <p class="footer__copy">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+  <div class="footer__box">
+    <p>머티리얼 미디어<br>Material Media</p>
+    <p>서울특별시 마포구 와우산로 00<br>00, Wausan-ro 00, Mapo-gu, Seoul, Republic of Korea</p>
+    <p>+82)02-123-456<br>info@mm.org<br>@material_media</p>
+  </div>
+</footer>
+
+<button class="part-arrow" id="partArrow" aria-label="다음 파트로 이동">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6"><path d="M12 0v23M5 16l7 7 7-7"/></svg>
+</button>
+
+<script src="main.js?v=73"></script>
+</body>
+</html>

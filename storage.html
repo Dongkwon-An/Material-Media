@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MATERIAL MEDIA STORAGE</title>
+<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="storage.css?v=3">
+</head>
+<body class="page-storage">
+
+<header class="lnb">
+  <a class="box-btn" href="storage.html">MATERIAL MEDIA STORAGE</a>
+  <nav class="lnb__nav">
+    <!-- 다음 페이지가 생기면 href만 바꾸면 됨 -->
+    <a class="box-btn" href="#" data-soon>About</a>
+    <a class="box-btn" href="collections.html">Collections</a>
+    <a class="box-btn" href="storage-archive.html">Archive</a>
+    <a class="box-btn" href="library.html">My Studio</a>
+    <a class="box-btn" href="search.html">Search</a>
+  </nav>
+</header>
+
+<main class="st">
+
+  <!-- 하이라이트 · 새 작품 · 주목 작품 : 마우스를 올린 칸이 넓어진다 -->
+  <section class="st-top">
+    <article class="st-col">
+      <p class="st-chip">Highlights</p>
+      <p class="st-cap">안동권, &lt;그대는 무엇이든 될 수 있다&gt;, 2026, 단채널 비디오, 흑백, 사운드, 6분 44초</p>
+      <div class="st-img"><img src="photo/st-highlight.jpg" alt="안동권, 그대는 무엇이든 될 수 있다"></div>
+    </article>
+    <article class="st-col">
+      <p class="st-chip">New</p>
+      <p class="st-cap">김민지, &lt;한국인 만들기&gt;, 2026, 6채널 비디오, 컬러, 무음, 루프</p>
+      <div class="st-img"><img src="photo/st-new.jpg" alt="김민지, 한국인 만들기"></div>
+    </article>
+    <article class="st-col">
+      <p class="st-chip">Rising</p>
+      <p class="st-cap">전아현, &lt;Sisyphus' Light Ascent&gt;, 2025, 단채널 비디오, 컬러, 무음, 루프</p>
+      <div class="st-img"><img src="photo/home4.jpg" alt="전아현, Sisyphus' Light Ascent" style="object-position: center 53%"></div>
+    </article>
+  </section>
+
+  <!-- 분야별 : 영상(소개 파트와 같은 6개)을 누르면 그 분야 페이지로 (페이지가 생기면 href만 바꾸면 됨) -->
+  <section class="st-cats">
+    <a class="st-cat" href="moving.html" style="--c:#02fbca; --t:#000">
+      <span class="st-tag">Moving image</span>
+      <span class="st-pic"><video src="vedio/web/material-media_moving_20261118-152839.mp4?v=2" muted loop playsinline preload="auto" style="width:199.95%; height:392.24%; left:-52.68%; top:-117.7%"></video></span>
+    </a>
+    <a class="st-cat" href="software.html" style="--c:#006dff">
+      <span class="st-tag">Software-based art</span>
+      <span class="st-pic"><video src="vedio/web/material-media_software_20261118-152910.mp4?v=2" muted loop playsinline preload="auto" style="width:112.11%; height:219.87%; left:-3.08%; top:-59.67%"></video></span>
+    </a>
+    <a class="st-cat" href="network.html" style="--c:#e6e938; --t:#000">
+      <span class="st-tag">Network-based art</span>
+      <span class="st-pic"><video src="vedio/web/material-media_network_20261118-152929.mp4?v=2" muted loop playsinline preload="auto" style="width:122.14%; height:239.67%; left:-11.14%; top:-61.23%"></video></span>
+    </a>
+    <a class="st-cat" href="light.html" style="--c:#eb3328">
+      <span class="st-tag">Light &amp; Kinetic</span>
+      <span class="st-pic"><video src="vedio/web/material-media_light_20261118-153001.mp4?v=2" muted loop playsinline preload="auto" style="width:126.59%; height:248.7%; left:-26.58%; top:-89.33%"></video></span>
+    </a>
+    <a class="st-cat" href="performance.html" style="--c:#f902a5">
+      <span class="st-tag">Performance</span>
+      <span class="st-pic"><video src="vedio/web/material-media_performance_20261119-142404.mp4?v=2" muted loop playsinline preload="auto" style="width:102.6%; height:201.28%; left:0; top:-54.73%"></video></span>
+    </a>
+    <a class="st-cat" href="digital.html" style="--c:#7e00ff">
+      <span class="st-tag">Digital Image</span>
+      <span class="st-pic"><video src="vedio/web/material-media_digital_20261119-102253.mp4?v=2" data-still="5" muted loop playsinline preload="auto" style="width:101.64%; height:198.52%; left:-1.7%; top:-63.53%"></video></span>
+    </a>
+  </section>
+</main>
+
+<footer class="st-foot">
+  <p class="footer__copy">Copyright MATERIAL MEDIA | All Rights Reserved</p>
+  <div class="st-logo">
+    <p class="st-logo__name">MATERIAL MEDIA</p>
+    <p class="st-logo__line"><span>EVERY NEW MEDIA WORKS,</span><span>INTACT FOR POSTERITY</span></p>
+  </div>
+  <div class="footer__box">
+    <p>머티리얼 미디어<br>MATERIAL MEDIA</p>
+    <p>서울특별시 마포구 와우산로 00<br>00, Wausan-ro 00, Mapo-gu, Seoul, Republic of Korea</p>
+    <p>+82)02-123-456<br>info@mm.org<br>@material_media</p>
+  </div>
+</footer>
+
+<script>
+  // field videos: shown as a still frame like an image; only the one under the mouse plays
+  (() => {
+    document.querySelectorAll(".st-cat").forEach((card) => {
+      const v = card.querySelector(".st-pic video");
+      if (!v) return;
+      v.muted = true;
+      const still = Number(v.dataset.still || 3);           // a frame where the drawing is visible
+      const toStill = () => { try { v.currentTime = still; } catch (e) {} };
+      if (v.readyState >= 1) toStill(); else v.addEventListener("loadedmetadata", toStill, { once: true });
+      // light web copy missing → original file
+      v.addEventListener("error", () => { if (v.src.includes("/web/")) { v.src = v.src.replace("/web/", "/"); v.load(); } }, { once: true });
+      card.addEventListener("mouseenter", () => v.play().catch(() => {}));
+      card.addEventListener("mouseleave", () => v.pause());
+      card.addEventListener("focus", () => v.play().catch(() => {}));
+      card.addEventListener("blur", () => v.pause());
+    });
+  })();
+
+  // About · Archive · Login · Search and the six field pages come later
+  document.querySelectorAll("[data-soon]").forEach((a) => a.addEventListener("click", (e) => e.preventDefault()));
+</script>
+<script src="sitenav.js?v=3"></script>
+</body>
+</html>

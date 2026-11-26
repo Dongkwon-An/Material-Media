@@ -110,10 +110,9 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .st-cats { grid-template-columns: 1fr; row-gap: 18px; padding-top: 16px; }
   .st-pic { height: calc((100vw - 24px) / 3.49); margin-top: 10px; }   /* same proportion as the desktop crop */
   .st-cats:has(.st-cat:hover) .st-cat:not(:hover) .st-pic::after { opacity: 0; }
-  .st-logo { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 48px; }
-  .st-logo__name { font-size: 26px; }
-  .st-logo__line { width: auto; font-size: 16px; line-height: 1.3; }
-  .st-logo__line span:last-child { align-self: flex-start; }
+  .st-logo { margin-top: 48px; gap: 12px; }   /* both ends, like the PC */
+  .st-logo__name { font-size: 4.6vw; white-space: nowrap; }
+  .st-logo__line { width: auto; font-size: 3.1vw; line-height: 1.25; white-space: nowrap; }
 
   /* ================= collections / categories (grid of works) ================= */
   .cl-grid, .sr-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; border-top: 1px solid var(--black); }

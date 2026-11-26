@@ -88,6 +88,7 @@
 <script>
   // field videos: shown as a still frame like an image; only the one under the mouse plays
   (() => {
+    const touch = matchMedia("(hover: none)").matches;
     document.querySelectorAll(".st-cat").forEach((card) => {
       const v = card.querySelector(".st-pic video");
       if (!v) return;
@@ -97,11 +98,27 @@
       if (v.readyState >= 1) toStill(); else v.addEventListener("loadedmetadata", toStill, { once: true });
       // light web copy missing → original file
       v.addEventListener("error", () => { if (v.src.includes("/web/")) { v.src = v.src.replace("/web/", "/"); v.load(); } }, { once: true });
+      if (touch) return;                                        // phones: see below
       card.addEventListener("mouseenter", () => v.play().catch(() => {}));
       card.addEventListener("mouseleave", () => v.pause());
       card.addEventListener("focus", () => v.play().catch(() => {}));
       card.addEventListener("blur", () => v.pause());
     });
+    // phones / tablets have no mouse-over (and iOS shows no frame until a video plays):
+    // every field video loops by itself while it is on screen
+    if (touch) {
+      const vids = [...document.querySelectorAll(".st-pic video")];
+      vids.forEach((v) => { v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.setAttribute("autoplay", ""); });
+      const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); }), { threshold: 0.1 });
+      vids.forEach((v) => io.observe(v));
+      const kick = () => vids.forEach((v) => { const r = v.parentNode.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) v.play().catch(() => {}); });
+      ["touchstart", "scroll"].forEach((ev) => addEventListener(ev, kick, { once: true, passive: true }));
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) kick(); });
+      addEventListener("pageshow", kick);                     // back from a field page: start again
+    } else {
+      // back from a field page: the paused frame stays on the still, nothing left mid-play
+      addEventListener("pageshow", (e) => { if (e.persisted) document.querySelectorAll(".st-pic video").forEach((v) => { v.pause(); try { v.currentTime = Number(v.dataset.still || 3); } catch (err) {} }); });
+    }
   })();
 
   // About · Archive · Login · Search and the six field pages come later

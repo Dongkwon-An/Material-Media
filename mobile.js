@@ -66,6 +66,16 @@
     location.href = a.href;
   }, true);
 
+  // ---------- payment (phone): 더보기 opens the rest of the banks instead of paying ----------
+  addEventListener("click", (e) => {
+    const more = isPhone() && e.target.closest && e.target.closest('.sh--pay .py__bank[aria-label="더보기"]');
+    if (!more) return;
+    const py = more.closest(".py");
+    if (py.classList.contains("is-more")) return;
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    py.classList.add("is-more");
+  }, true);
+
   // ---------- logo site menu: first tap opens it, a tap elsewhere closes it ----------
   addEventListener("load", () => {
     const wrap = document.querySelector(".lnb-site");

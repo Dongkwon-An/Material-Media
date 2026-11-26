@@ -166,7 +166,46 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .lb__cap { white-space: normal; font-size: 12px; }
   .lb__nav { display: none; }
   .sh--done, .sh--proc { --u: calc((100vw - 32px) / 614); }
-  .sh--pay { --u: calc((100vw - 24px) / 1000); }   /* the payment sheet keeps its PC layout, fitted to the width (pinch to zoom) */
+  /* payment: one scrolling column — work info → price · period → ways to pay (banks 3 a row, 더보기 last) */
+  .sh--pay { padding: 16px; }
+  .sh--pay .py {
+    position: relative; width: 100%; max-width: 440px; height: auto; max-height: calc(100dvh - 32px);
+    overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center;
+    column-gap: 8px; row-gap: 8px; padding: 0 14px 20px;
+  }
+  .sh--pay .py > * { position: static !important; left: auto !important; top: auto !important; margin: 0; grid-column: 1 / -1; }
+  .sh--pay .py__ln { display: none; }
+  .sh--pay .py .wk-tag, .sh--pay .py .cl-chip { height: 27px; font-size: 14px; padding: 0 8px; }
+  .sh--pay .py > .wk-tag { justify-self: start; }
+  /* head: Collection … X, then a line */
+  .sh--pay .py > .wk-tag:first-child { order: 0; grid-column: 1 / 5; margin-top: 12px; }
+  .sh--pay .py__x { order: 1; grid-column: 5 / -1; justify-self: end; width: 27px; margin-top: 12px; }
+  .sh--pay .py::before, .sh--pay .py::after { content: ""; grid-column: 1 / -1; height: 1px; background: var(--black); margin: 4px -14px; }
+  .sh--pay .py::before { order: 2; }
+  /* 1. work */
+  .sh--pay .py__img { order: 3; width: 100%; height: auto; aspect-ratio: 412 / 223; margin-top: 6px; }
+  .sh--pay .py__tbl { order: 4; width: 100%; font-size: 13px; }
+  .sh--pay .py__tbl > div { height: 30px; }
+  .sh--pay .py__tbl dt { width: 72px; }
+  .sh--pay .py__tbl dd { padding-left: 9px; white-space: normal; line-height: 1.3; }
+  /* 2. price · period */
+  .sh--pay .py::after { order: 5; margin-top: 12px; }
+  .sh--pay .py > .wk-tag:nth-child(2) { order: 6; margin-top: 6px; }
+  .sh--pay .py__sum { order: 7; font-size: 16px; line-height: 1.35; }
+  .sh--pay .py__term { order: 8; font-size: 13px; line-height: 1.35; }
+  /* 3. ways to pay */
+  .sh--pay .py__h { order: 9; font-size: 16px; line-height: 1.3; margin-top: 18px; }
+  .sh--pay .py__h ~ .py__h { order: 13; }
+  .sh--pay .py__bank { order: 10; grid-column: span 2; width: 100%; height: auto; aspect-ratio: 66 / 51; border-radius: 9px; }
+  .sh--pay .py:not(.is-more) .py__bank[aria-label="BC카드"] { display: none; }   /* 11 + 더보기 = 4 rows of 3 */
+  .sh--pay .py.is-more .py__bank[aria-label="더보기"] { display: none; }
+  .sh--pay .py__bank[aria-label="더보기"] { order: 10; }
+  .sh--pay .py__note { order: 11; font-size: 11px; margin-top: 2px; }
+  .sh--pay .py__opt { order: 12; width: 100%; height: 62px; border-radius: 9px; padding: 0 14px; gap: 4px; }
+  .sh--pay .py__opt b { font-size: 14px; line-height: 1.2; }
+  .sh--pay .py__opt span { font-size: 11px; line-height: 1.3; }
+  .sh--pay .py__easy { order: 14; grid-column: span 3; width: 100%; height: 46px; border-radius: 9px; padding: 0 12px; font-size: 14px; }
 
   /* ================= storage archive list + articles ================= */
   .ar-bar .ar-find { order: 9; width: 100%; margin-left: 0; height: 32px; }

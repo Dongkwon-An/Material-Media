@@ -40,7 +40,9 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .lnb { flex-wrap: wrap; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
   .lnb__nav { width: 100%; flex-wrap: wrap; gap: 4px; }
   .box-btn { font-size: 14px; padding: 0.2em 0.4em; }
-  .lnb-site__menu .box-btn { font-size: 14px; }
+  /* top-left logo: a label only on phones (no site menu, no link) — mobile.js */
+  .lnb-site__menu, .lnb-site.is-open .lnb-site__menu { display: none; }
+  .lnb > a.box-btn:first-child, .lnb-site > a.box-btn { cursor: default; -webkit-tap-highlight-color: transparent; }
   .box-btn:hover { background: var(--white); color: var(--black); }
   .box-btn.is-active, .box-btn.is-active:hover { background: var(--black); color: var(--white); }
   .part-arrow { display: none; }

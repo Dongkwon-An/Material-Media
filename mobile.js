@@ -76,20 +76,11 @@
     py.classList.add("is-more");
   }, true);
 
-  // ---------- logo site menu: first tap opens it, a tap elsewhere closes it ----------
-  addEventListener("load", () => {
-    const wrap = document.querySelector(".lnb-site");
-    if (!wrap) return;
-    const logo = wrap.querySelector(":scope > a.box-btn");
-    let wasOpen = false;   // a tap also fires mouseenter (which opens the menu), so look at the state before the tap
-    logo.addEventListener("touchstart", () => { wasOpen = wrap.classList.contains("is-open"); }, { passive: true, capture: true });
-    logo.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") wasOpen = wrap.classList.contains("is-open"); }, true);
-    logo.addEventListener("click", (e) => {
-      if (!isPhone() || wasOpen) return;
-      e.preventDefault(); e.stopPropagation();
-      wrap.classList.add("is-open");
-      wasOpen = true;
-    }, true);
-    document.addEventListener("click", (e) => { if (isPhone() && !wrap.contains(e.target)) wrap.classList.remove("is-open"); });
-  });
+  // ---------- top-left logo: on a phone it is only a label (the exhibition shows the storage only) — no menu, no link ----------
+  addEventListener("click", (e) => {
+    if (!isPhone() || !e.target.closest) return;
+    const logo = e.target.closest(".lnb > a.box-btn:first-child, .lnb-site > a.box-btn, .lnb-site__menu a");
+    if (!logo) return;
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+  }, true);
 })();

@@ -10,6 +10,7 @@
   grid-template-columns: 904fr 89fr 395fr 15fr;   /* 19 … 923 | 1012 … 1407 | 1422 */
   margin: 0 var(--edge);
   padding: calc(17 * var(--s)) 0 calc(63 * var(--s));
+  border-top: 1px solid var(--black);      /* line under the category row: picture + info below it */
   border-bottom: 1px solid var(--black);
 }
 .wk-main { grid-column: 1; min-width: 0; }

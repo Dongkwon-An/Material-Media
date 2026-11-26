@@ -136,7 +136,7 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .cl-cat[data-tip]::after { left: 0; right: 0; top: 100%; width: auto; font-size: 12px; padding: 8px 10px; }
 
   /* ================= work detail ================= */
-  .wk { grid-template-columns: 1fr; padding: 4px 0 32px; }
+  .wk { grid-template-columns: 1fr; padding: 14px 0 32px; }
   .wk-main, .wk-side { grid-column: 1; }
   .wk-side { margin-top: 32px; }
   .wk-side__in { position: static; font-size: 14px; }

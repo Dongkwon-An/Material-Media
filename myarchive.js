@@ -1,4 +1,6 @@
 (() => {
+  // the text as written by this page, whatever language is shown (i18n.js)
+  const T = (el) => (el ? (window.mmOrig ? window.mmOrig(el) : el.textContent) : "");
   /* ======================================================
      Where the buttons go. Fill in a file name when that page exists;
      an empty value means the button does nothing for now.
@@ -423,14 +425,14 @@
     rowsEl.addEventListener("click", (e) => {
       const b = e.target.closest("[data-goto-row]");
       if (!b) return;
-      const title = b.closest(".tr").querySelector(".tr__cells span:nth-child(2)").textContent;
+      const title = T(b.closest(".tr").querySelector(".tr__cells span:nth-child(2)"));
       try {
         localStorage.setItem("mm_work", title);
         // the 대기중 change only counts for a flow begun with 시작하기
-        if (b.textContent.trim() === "시작하기") sessionStorage.setItem("mm_flow", title);
+        if (T(b).trim() === "시작하기") sessionStorage.setItem("mm_flow", title);
         else sessionStorage.removeItem("mm_flow");
         // a fresh 시작하기 / 수정하기 is not a revision of a rejected work
-        if (b.textContent.trim() !== "사유보기") { sessionStorage.removeItem("mm_revise"); sessionStorage.removeItem("mm_jump"); }
+        if (T(b).trim() !== "사유보기") { sessionStorage.removeItem("mm_revise"); sessionStorage.removeItem("mm_jump"); }
       } catch (err) {}
       go(b.dataset.gotoRow);
     });
@@ -1036,7 +1038,7 @@
         sessionStorage.setItem("mm_revise", "1");
         sessionStorage.setItem("mm_jump", b.dataset.fix);
         // resubmitting this rejected work turns it into 대기중 on the list
-        sessionStorage.setItem("mm_flow", $("rvTitle").textContent.trim());
+        sessionStorage.setItem("mm_flow", T($("rvTitle")).trim());
       } catch (e) {}
       go(TARGET[b.dataset.fix]);
     }));

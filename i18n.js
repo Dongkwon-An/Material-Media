@@ -1,87 +1,94 @@
 // MATERIAL MEDIA — KR / EN switch (top right of the header).
-// Swaps the labels of buttons, tabs, tags and small UI text between Korean and English.
-// Left as they are: the logos (MATERIAL MEDIA · STORAGE · ARCHIVE), the footer, the storage footer logo line,
-// work titles, names and long texts. The choice is remembered (localStorage "mm_lang").
+// EN: every Korean text of the site becomes English (i18n-dict.js) — except the criticism article bodies.
+// KR: the English buttons, tabs and tags become Korean (PAIRS below); Highlights · New · Rising stay English.
+// Never touched: the logos (MATERIAL MEDIA · STORAGE · ARCHIVE), the footer box and copyright line,
+// and the storage footer logo line. The choice is remembered (localStorage "mm_lang").
 (() => {
-  // [English, 한국어]
+  // [English, 한국어] — the UI words that are English on the page and turn Korean in KR
   const PAIRS = [
-    // header
     ["About", "소개"], ["Collections", "소장품"], ["Archive", "아카이브"], ["My Studio", "마이 스튜디오"], ["Search", "검색"],
     ["Datacenter", "데이터센터"], ["Storage", "스토리지"], ["My Archive", "마이 아카이브"], ["Back", "뒤로"],
-    // home / archive introduction links
-    ["Learn more", "알아보기"], ["Go to Storage", "바로가기"], ["Museum", "미술관"], ["Artist", "작가"],
-    // storage home + categories
     ["Moving image", "무빙 이미지"], ["Software-based art", "소프트웨어 기반 예술"], ["Network-based art", "네트워크 기반 예술"],
     ["Light & Kinetic", "라이트 & 키네틱"], ["Performance", "퍼포먼스"], ["Digital Image", "디지털 이미지"],
     ["Categories", "카테고리"], ["All", "전체"],
-    // work detail
     ["Paid", "결제"], ["Purchased", "구매 완료"], ["Share", "공유"], ["Image", "이미지"],
     ["Related Collections", "관련 소장품"], ["Related Archive", "관련 아카이브"],
-    ["Year", "제작연도"], ["Type", "유형"], ["Medium", "재료"], ["Duration", "시간"], ["Description", "작품설명"],
-    ["Copy", "복사"], ["Copied", "복사됨"], ["Copyright Consent", "저작권 동의"], ["Agree", "동의"],
-    // payment
-    ["Collection", "작품 정보"], ["Total", "총액"], ["Viewing Period", "이용기간"], ["Payment Method", "결제 수단"],
-    ["Interest-free installments", "무이자 할부 안내"], ["App Card", "앱카드 결제"], ["Quick and easy payment", "고민없이 쉽고 빠르게 결제하기"],
-    ["Other Payment", "다른 결제"], ["Standard, SMS or login payment", "일반결제, SMS결제, 로그인결제"], ["Easy Pay", "간편결제"], ["Naver Pay", "네이버 페이"],
-    ["Paying for the work.", "상품을 결제하는 중입니다."], ["Checking the payment details", "결제 정보를 확인하는 중이에요"],
-    ["Getting the payment approved", "결제를 승인받는 중이에요"], ["Adding the work to My Studio", "마이 스튜디오에 작품을 담는 중이에요"],
-    ["Your payment is complete.", "선택하신 작품 결제가 완료됐습니다."], ["You can watch the work in My Studio.", "결제하신 작품은 마이 스튜디오에서 감상하실 수 있습니다."],
-    // storage archive lists
-    ["Criticism", "비평"], ["Artist Criticism", "작가 비평"], ["Exhibition Criticism", "전시 비평"], ["Interview", "인터뷰"], ["Interviews", "인터뷰"],
-    ["Search by title", "제목으로 검색"],
-    // search
-    ["Enter a title or an artist", "작품명, 작가명을 입력하세요"], ["Enter a search term", "검색어를 입력하세요"],
-    ["The archive list is empty", "아카이브 목록이 비어 있습니다"], ["The interview list is empty", "인터뷰 목록이 비어 있습니다"], ["No media found", "미디어 목록이 비어 있습니다"],
-    // my studio
-    ["Continue Watching", "이어 보기"], ["My Videos", "내 영상"], ["Log out", "로그아웃"], ["Edit Profile", "개인정보 변경"], ["Delete Account", "회원탈퇴"],
-    ["Position", "직책"], ["Joined", "가입일"], ["Not Free", "유료"], ["Free", "무료"], ["Private", "비공개"], ["End", "종료"], ["Expired", "만료"],
-    ["Extend", "연장하기"], ["View", "열람하기"], ["Work", "작업"], ["Category", "분류"], ["Title", "작품명"], ["Name", "이름"], ["Access", "공개범위"], ["Due", "기한"],
-    // phone notice (archive is PC only)
-    ["Notice", "알림"], ["OK", "확인"], ["Home", "홈으로"], ["To Storage", "스토리지로"],
-    ["Please use the archive on a PC", "아카이브는 PC 웹에서 이용해 주세요"],
-    ["Registering works and filling in their details is done on a larger screen.", "작품 등록과 정보 기입은 넓은 화면에서 진행됩니다."], ["Please visit on a computer.", "컴퓨터로 접속해 주세요."],
-    // archive (기입) pages: their English buttons
+    ["Copy", "복사"], ["Copied", "복사됨"], ["Copyright Consent", "저작권 동의"], ["Agree", "동의"], ["Collection", "작품 정보"], ["URL:", "URL:"],
+    ["Criticism", "비평"], ["Artist Criticism", "작가 비평"], ["Exhibition Criticism", "전시 비평"], ["Interviews", "인터뷰"], ["Interview", "인터뷰"],
+    ["Continue Watching", "이어 보기"], ["My Videos", "내 영상"], ["Not Free", "유료"], ["Free", "무료"], ["Private", "비공개"], ["End", "종료"], ["Extend", "연장하기"],
+    ["Notice", "알림"],
     ["Collections List", "소장품 목록"], ["Get Started", "시작"], ["Details", "상세 정보"], ["Provenance", "작품 이력"],
     ["Upload", "업로드"], ["Submit", "제출"], ["Save", "저장"], ["Next", "다음"], ["Review Result", "심사 결과"],
-    // archive (기입) pages: boxes (tag at the top left + buttons) and the State filter
     ["Leave", "나가기"], ["Continue", "계속 작성"], ["Final Submission", "최종 제출"], ["Loading", "불러오는 중"], ["State", "상태"],
   ];
-  const toKo = new Map(), toEn = new Map();
-  PAIRS.forEach(([en, ko]) => { toKo.set(en, ko); toEn.set(ko, en); });
+  const norm = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const toKo = new Map(PAIRS.map(([en, ko]) => [en, ko]));
+  const toEn = new Map();
+  (window.MM_EN || []).forEach(([ko, en]) => toEn.set(norm(ko), en));
+  window.mmEn = (s) => toEn.get(norm(s)) || "";          // for search: the English of a Korean title / name
 
-  // where labels live, and what is never touched
-  const UI = "button, a, label, dt, .step-chip, .box-btn, .cl-chip, .wk-tag, .st-chip, .st-tag, .lib-chip, .lib-btn, .lib-row, .lib-info, .wk-dt, " +
-             ".py, .dn, .sh__head, .sh__body, .tm__foot, .mn, .use-card__label, .link-btn, .sr-msg, .ar-empty, .leave__tag, .leave__foot";
-  const SKIP = ".lnb > a.box-btn:first-child, .lnb-site, .footer__box, .footer__copy, .st-logo, .lang-sw, script, style, " +
-               ".cl-item, .ar-row, .wk-card, .cr-text, .tm__body, .lib-card__t, .lib-card__bot, .wk-desc__txt";
+  const SKIP = ".lnb > a.box-btn:first-child, .lnb-site, .footer__box, .footer__copy, .st-logo, .lang-sw, .cr-text, script, style, noscript";
 
   let lang = "en";
   try { lang = localStorage.getItem("mm_lang") === "ko" ? "ko" : "en"; } catch (e) {}
 
-  const swapText = (node) => {
-    const raw = node.nodeValue, t = raw.trim();
-    if (!t) return;
-    const map = lang === "ko" ? toKo : toEn;
-    const to = map.get(t);
-    if (to == null) return;
-    const el = node.parentElement;
-    if (!el || !el.closest(UI) || el.closest(SKIP)) return;
-    node.nodeValue = raw.replace(t, to.trim());
+  const orig = new WeakMap(), wrote = new WeakMap();      // text node → its own text / what we last wrote into it
+  const tr = (o) => {
+    const k = norm(o); if (!k) return null;
+    return lang === "en" ? toEn.get(k) : toKo.get(k);
   };
-  const swapPh = (el) => {
-    const ph = el.getAttribute("placeholder"); if (!ph) return;
-    const map = lang === "ko" ? toKo : toEn;
-    if (!el.dataset.ph) el.dataset.ph = ph;
-    const to = map.get(ph.trim()); if (to) el.setAttribute("placeholder", to);
+  const doText = (node) => {
+    const el = node.parentElement;
+    if (!el || el.closest(SKIP)) return;
+    const now = node.nodeValue;
+    if (!orig.has(node) || wrote.get(node) !== now) orig.set(node, now);   // new, or rewritten by the page itself
+    const o = orig.get(node), t = tr(o);
+    const val = t == null ? o : (o.match(/^\s*/)[0] + t + o.match(/\s*$/)[0]);
+    if (now !== val) node.nodeValue = val;
+    wrote.set(node, val);
+  };
+  const ATTRS = ["placeholder", "data-tip"];
+  const doAttrs = (el) => ATTRS.forEach((a) => {
+    if (!el.hasAttribute(a) || el.closest(SKIP)) return;
+    const key = "i18n" + a.replace(/-(\w)/g, (m, c) => c.toUpperCase()).replace(/^./, (c) => c.toUpperCase());
+    const now = el.getAttribute(a);
+    if (el.dataset[key] == null || el.dataset[key + "W"] !== now) el.dataset[key] = now;
+    const o = el.dataset[key], t = tr(o), val = t == null ? o : t;
+    if (now !== val) el.setAttribute(a, val);
+    el.dataset[key + "W"] = val;
+  });
+  // text fields the page fills in (not what people type, not checkboxes)
+  const doValue = (el) => {
+    if (!(el.matches("textarea, input[type=text], input:not([type])")) || el.closest(SKIP)) return;
+    if (el.dataset.i18nV == null) { if (!el.value || document.activeElement === el) return; el.dataset.i18nV = el.value; }
+    else if (el.value !== el.dataset.i18nVW) { el.dataset.i18nV = el.value; }
+    const o = el.dataset.i18nV, t = tr(o), val = t == null ? o : t;
+    if (el.value !== val) el.value = val;
+    el.dataset.i18nVW = val;
   };
   const run = (root) => {
     if (!root) return;
-    if (root.nodeType === 3) { swapText(root); return; }
+    if (root.nodeType === 3) { doText(root); return; }
     if (root.nodeType !== 1) return;
     const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    let n; while ((n = w.nextNode())) swapText(n);
-    if (root.matches && root.matches("[placeholder]")) swapPh(root);
-    root.querySelectorAll && root.querySelectorAll("[placeholder]").forEach(swapPh);
+    let n; while ((n = w.nextNode())) doText(n);
+    const els = [root, ...root.querySelectorAll("[placeholder], [data-tip], input, textarea")];
+    els.forEach((el) => { if (el.nodeType === 1) { doAttrs(el); if (el.matches("input, textarea")) doValue(el); } });
+  };
+  // the browser tab title
+  let titleOrig = document.title;
+  const doTitle = () => {
+    const parts = titleOrig.split(" — ");
+    const t = parts.map((p) => tr(p) ?? p).join(" — ");
+    if (document.title !== t) document.title = t;
+  };
+
+  // the text as the page wrote it, whatever the language shown (archive pages read titles and button names)
+  window.mmOrig = (el) => {
+    if (!el) return "";
+    let s = ""; const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) s += orig.has(n) && wrote.get(n) === n.nodeValue ? orig.get(n) : n.nodeValue;
+    return s;
   };
 
   // the switch: KR | EN at the right end of the header
@@ -107,17 +114,20 @@
     try { localStorage.setItem("mm_lang", lang); } catch (e) {}
     document.documentElement.lang = lang;
     document.documentElement.dataset.lang = lang;
-    run(document.body); mark();
+    run(document.body); doTitle(); mark();
   };
 
   const start = () => {
     addSwitch();
     set(lang);
-    // text that the page writes later (boxes, messages, Paid → Purchased …)
+    // text the page writes later (boxes, lists, messages, Paid → Purchased …)
     new MutationObserver((ms) => ms.forEach((m) => {
-      if (m.type === "characterData") swapText(m.target);
+      if (m.type === "characterData") doText(m.target);
+      else if (m.type === "attributes") { if (ATTRS.includes(m.attributeName)) doAttrs(m.target); }
       else m.addedNodes.forEach(run);
-    })).observe(document.body, { childList: true, subtree: true, characterData: true });
+    })).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+    // fields filled in by the page a moment later
+    setTimeout(() => run(document.body), 600);
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

@@ -10,6 +10,7 @@
   back.addEventListener("click", (e) => { if (document.referrer && history.length > 1) { e.preventDefault(); history.back(); } });
 
   // spaces and letter case don't matter ("a4 광장" finds "A4광장")
+  const en = (s) => (window.mmEn ? window.mmEn(s) : "");   // English titles / names also match (i18n.js)
   const norm = (s) => (s || "").toLowerCase().replace(/\s+/g, "");
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -20,7 +21,7 @@
     if (sc !== "collections") { msg.textContent = sc === "archive" ? "아카이브 목록이 비어 있습니다" : "인터뷰 목록이 비어 있습니다"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
     if (!k) { msg.textContent = "검색어를 입력하세요"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
     // only Collections has data for now (Archive · Interview: nothing yet)
-    const hits = scope.dataset.value !== "collections" ? [] : works.filter((w) => norm([w.title, w.artist, w.info, w.keys].join(" ")).includes(k));
+    const hits = scope.dataset.value !== "collections" ? [] : works.filter((w) => norm([w.title, w.artist, w.info, w.keys, en(w.title), en(w.artist)].join(" ")).includes(k));
     if (!hits.length) { msg.textContent = "미디어 목록이 비어 있습니다"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
     msg.hidden = true; grid.hidden = false;
     grid.innerHTML = hits.map((w) => `
@@ -55,4 +56,6 @@
   const q0 = new URL(location.href).searchParams.get("q") || "";
   input.value = q0; render(q0);
   if (!q0) input.focus();
+  // the English names / titles (i18n.js) arrive after this script: search again once the page is loaded
+  addEventListener("load", () => { if (input.value.trim()) render(input.value); });
 })();

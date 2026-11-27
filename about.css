@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: 319fr 101.5fr 319fr 101.5fr 319fr;
   margin-top: calc(34 * var(--s));
-  align-items: center;
+  align-items: stretch;
 }
 .ab-step {
   border: 1px solid var(--black); border-radius: calc(12 * var(--s));
@@ -42,9 +42,9 @@
   min-width: 0;
 }
 .ab-step__no { font-size: max(20px, calc(30 * var(--s))); font-weight: 700; line-height: 1; }
-.ab-step__title { font-size: max(20px, calc(30 * var(--s))); font-weight: 600; line-height: 1.1; white-space: nowrap; }
+.ab-step__title { font-size: max(20px, calc(30 * var(--s))); font-weight: 600; line-height: 1.1; word-break: keep-all; overflow-wrap: break-word; }
 .ab-step__desc { font-size: max(12px, calc(15 * var(--s))); line-height: 1.3; }
-.ab-arrow { display: flex; justify-content: center; }
+.ab-arrow { display: flex; justify-content: center; align-self: center; }
 .ab-arrow svg { width: max(18px, calc(27 * var(--s))); height: auto; }
 
 .page-about .st-foot { padding-top: calc(217 * var(--s)); }

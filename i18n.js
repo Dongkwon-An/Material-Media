@@ -59,7 +59,7 @@
   });
   // text fields the page fills in (not what people type, not checkboxes)
   const doValue = (el) => {
-    if (!(el.matches("textarea, input[type=text], input:not([type])")) || el.closest(SKIP)) return;
+    if (!(el.matches("textarea, input[type=text], input:not([type])")) || el.closest(SKIP) || document.activeElement === el) return;
     if (el.dataset.i18nV == null) { if (!el.value || document.activeElement === el) return; el.dataset.i18nV = el.value; }
     else if (el.value !== el.dataset.i18nVW) { el.dataset.i18nV = el.value; }
     const o = el.dataset.i18nV, t = tr(o), val = t == null ? o : t;
@@ -126,8 +126,8 @@
       else if (m.type === "attributes") { if (ATTRS.includes(m.attributeName)) doAttrs(m.target); }
       else m.addedNodes.forEach(run);
     })).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
-    // fields filled in by the page a moment later
-    setTimeout(() => run(document.body), 600);
+    // fields the page fills in later (after a loading box, a choice in a dropdown …): look at them now and then
+    setInterval(() => document.querySelectorAll("textarea, input[type=text], input:not([type])").forEach(doValue), 400);
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

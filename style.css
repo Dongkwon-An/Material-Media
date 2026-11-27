@@ -308,3 +308,11 @@ a { color: inherit; text-decoration: none; }
 .lang-sw .box-btn.is-on, .lang-sw .box-btn.is-on:hover { background: var(--black); border-color: var(--black); color: var(--white); }
 .lang-sw .box-btn--blue.is-on, .lang-sw .box-btn--blue.is-on:hover { background: var(--archive); border-color: var(--archive); color: var(--white); }
 html[data-lang="en"] .login__title { white-space: nowrap; }
+
+/* ▾ beside the top-left logo: opens the site menu — sitenav.js */
+.lnb-site { gap: 4px; align-items: stretch; }
+.lnb-site__arrow { padding: 0; width: 1.6em; }
+.lnb-site__arrow svg { width: 0.55em; height: auto; transition: transform 0.15s ease; }
+.lnb-site.is-open .lnb-site__arrow { background: var(--black); color: var(--white); }
+.lnb-site.is-open .lnb-site__arrow svg { transform: rotate(180deg); }
+.lnb-site.is-open .lnb-site__arrow.box-btn--blue { background: var(--archive); border-color: var(--archive); color: var(--white); }

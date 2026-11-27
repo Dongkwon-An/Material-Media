@@ -76,13 +76,13 @@
     py.classList.add("is-more");
   }, true);
 
-  // ---------- top-left logo on a phone (the exhibition shows the storage only): no site menu;
-  //            MATERIAL MEDIA STORAGE goes to the storage home, the other logos do nothing ----------
+  // ---------- top-left logo on a phone: MATERIAL MEDIA STORAGE goes to the storage home, the other logos do nothing
+  //            (the ▾ beside it opens the site menu — sitenav.js) ----------
   addEventListener("click", (e) => {
     if (!isPhone() || !e.target.closest) return;
-    const logo = e.target.closest(".lnb > a.box-btn:first-child, .lnb-site > a.box-btn, .lnb-site__menu a");
+    const logo = e.target.closest(".lnb > a.box-btn:first-child, .lnb-site > a.box-btn");
     if (!logo) return;
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-    if (/STORAGE/.test(logo.textContent) && !logo.closest(".lnb-site__menu")) location.href = "storage.html";
+    if (/STORAGE/.test(logo.textContent)) location.href = "storage.html";
   }, true);
 })();

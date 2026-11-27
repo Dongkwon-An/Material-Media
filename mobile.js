@@ -1,7 +1,7 @@
 // MATERIAL MEDIA — phone support (with mobile.css)
 //  · the archive (기입) pages are PC only: on a phone, any link into them opens a notice instead,
 //    and opening one directly shows the same notice with a way back
-//  · the top-left logo's site menu opens with a tap (there is no hover on a phone)
+//  · the top-left logo: ☰ opens a black full-screen menu (header buttons, the three sites, KR / EN)
 (() => {
   const mq = matchMedia("(max-width: 767px)");
   const isPhone = () => mq.matches;
@@ -52,6 +52,7 @@
     const a = e.target.closest && e.target.closest("a[href]");
     if (!a || !isArchive(file(a.getAttribute("href")))) return;
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    if (window.mmMenuClose) window.mmMenuClose();
     open();
   }, true);
 
@@ -85,4 +86,72 @@
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
     if (/STORAGE/.test(logo.textContent)) location.href = "storage.html";
   }, true);
+
+  // ---------- phone menu: ☰ beside the logo opens a black full-screen menu
+  //            (the header buttons in large type, then the three sites and KR / EN) ----------
+  const buildMenu = () => {
+    const lnb = document.querySelector(".lnb");
+    const wrap = document.querySelector(".lnb-site");
+    if (!lnb || !wrap || wrap.querySelector(".lnb-site__burger")) return;
+    const logo = wrap.querySelector(":scope > a.box-btn");
+    const burger = document.createElement("button");
+    burger.type = "button";
+    burger.className = "box-btn lnb-site__burger";
+    burger.setAttribute("aria-label", "메뉴 열기");
+    burger.setAttribute("aria-expanded", "false");
+    burger.innerHTML = '<svg viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.4"/></svg>';
+    wrap.insertBefore(burger, logo.nextSibling);
+
+    const pane = document.createElement("div");
+    pane.className = "mm-menu";
+    pane.hidden = true;
+    pane.setAttribute("role", "dialog");
+    pane.setAttribute("aria-modal", "true");
+    pane.setAttribute("aria-label", "메뉴");
+    document.body.appendChild(pane);
+
+    const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const fill = () => {
+      const lang = document.documentElement.dataset.lang || "en";
+      const big = [...lnb.querySelectorAll(".lnb__nav > a")];
+      const sites = [...wrap.querySelectorAll(".lnb-site__menu a")];
+      const bigLinks = (big.length ? big : sites).map((a) =>
+        `<a class="mm-menu__big${a.classList.contains("is-active") || a.classList.contains("is-current") ? " is-on" : ""}" href="${a.getAttribute("href")}">${esc(a.textContent.trim())}</a>`).join("");
+      const siteLinks = big.length ? sites.map((a) =>
+        `<a class="mm-menu__small${a.classList.contains("is-current") ? " is-on" : ""}" href="${a.getAttribute("href")}">${esc(a.textContent.trim())}</a>`).join("") : "";
+      pane.innerHTML =
+        `<div class="mm-menu__top"><button class="mm-menu__x" type="button" aria-label="메뉴 닫기"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1l14 14M15 1 1 15" stroke="currentColor" stroke-width="1.4"/></svg></button>` +
+        `<span class="mm-menu__name">${esc(logo.textContent.trim())}</span></div>` +
+        `<nav class="mm-menu__bigs">${bigLinks}</nav>` +
+        `<div class="mm-menu__smalls">${siteLinks}` +
+        `<div class="mm-menu__lang"><button type="button" data-lang="ko" class="${lang === "ko" ? "is-on" : ""}">KR</button><span>/</span><button type="button" data-lang="en" class="${lang === "en" ? "is-on" : ""}">EN</button></div></div>`;
+    };
+    const openMenu = () => {
+      fill(); pane.hidden = false; burger.setAttribute("aria-expanded", "true");
+      document.documentElement.classList.add("mn-lock");
+      requestAnimationFrame(() => pane.classList.add("is-open"));
+    };
+    const closeMenu = () => {
+      if (pane.hidden) return;
+      pane.classList.remove("is-open"); burger.setAttribute("aria-expanded", "false");
+      document.documentElement.classList.remove("mn-lock");
+      setTimeout(() => { pane.hidden = true; }, 220);
+    };
+    window.mmMenuClose = closeMenu;
+    burger.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); openMenu(); });
+    pane.addEventListener("click", (e) => {
+      if (e.target.closest(".mm-menu__x")) { closeMenu(); return; }
+      const l = e.target.closest("[data-lang]");
+      if (l) {   // the header's own KR / EN does the work (i18n.js); then the menu is written again in that language
+        const sw = document.querySelector(`.lang-sw [data-lang="${l.dataset.lang}"]`);
+        if (sw) sw.click();
+        setTimeout(fill, 30);
+        return;
+      }
+      if (e.target.closest("a[href]")) setTimeout(closeMenu, 0);
+    });
+    addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+    mq.addEventListener && mq.addEventListener("change", () => { if (!isPhone()) closeMenu(); });
+  };
+  addEventListener("load", buildMenu);
 })();

@@ -295,6 +295,38 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .cl-filter:has(+ .cl-desc) { padding-bottom: 8px; }
 
   /* KR | EN: right end of the logo row */
-  .lnb { position: relative; }
-  .lnb .lang-sw { position: absolute; right: 0; top: 10px; margin-left: 0; }
+  /* the header on a phone: logo + ☰ only — the buttons, the site menu and KR / EN live in the black menu */
+  .lnb__nav, .lnb .lang-sw, .lnb-site__arrow, .lnb-site__menu { display: none !important; }
+  .lnb-site__burger { display: inline-flex !important; padding: 0; width: 1.75em; }
+  .lnb-site__burger svg { width: 0.8em; height: auto; }
 }
+
+/* ---------- phone menu (black, full screen) — mobile.js ---------- */
+.lnb-site__burger { display: none; }
+.mm-menu {
+  position: fixed; inset: 0; z-index: 9000; overflow-y: auto;
+  padding: 14px 16px 28px;
+  background: #000; color: #fff;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;
+  opacity: 0; transition: opacity 0.2s ease;
+}
+.mm-menu[hidden] { display: none; }
+.mm-menu.is-open { opacity: 1; }
+.mm-menu a, .mm-menu button { color: #fff; text-decoration: none; font-family: inherit; font-weight: inherit; background: none; border: 0; cursor: pointer; }
+.mm-menu__top { display: flex; align-items: center; gap: 16px; }
+.mm-menu .mm-menu__x { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid #fff !important; }
+.mm-menu__x svg { width: 18px; height: 18px; }
+.mm-menu__name { font-size: 17px; letter-spacing: 0.01em; }
+.mm-menu__bigs { margin-top: 44px; }
+.mm-menu .mm-menu__big {
+  display: block; padding: 8px 0 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 30px; line-height: 1.2; letter-spacing: -0.01em;
+}
+.mm-menu .mm-menu__big.is-on { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.mm-menu__smalls { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 22px; font-size: 16px; }
+.mm-menu .mm-menu__small.is-on { text-decoration: underline; text-underline-offset: 4px; }
+.mm-menu__lang { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.mm-menu__lang span { opacity: 0.5; }
+.mm-menu .mm-menu__lang button { padding: 0; opacity: 0.5; font-size: 16px; }
+.mm-menu .mm-menu__lang button.is-on { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }

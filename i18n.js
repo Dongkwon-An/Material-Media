@@ -27,7 +27,7 @@
   (window.MM_EN || []).forEach(([ko, en]) => toEn.set(norm(ko), en));
   window.mmEn = (s) => toEn.get(norm(s)) || "";          // for search: the English of a Korean title / name
 
-  const SKIP = ".lnb > a.box-btn:first-child, .lnb-site, .footer__box, .footer__copy, .st-logo, .lang-sw, .cr-text, script, style, noscript";
+  const SKIP = ".lnb > a.box-btn:first-child, .lnb-site, .mm-menu, .footer__box, .footer__copy, .st-logo, .lang-sw, .cr-text, script, style, noscript";
 
   let lang = "en";
   try { lang = localStorage.getItem("mm_lang") === "ko" ? "ko" : "en"; } catch (e) {}

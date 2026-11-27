@@ -18,7 +18,7 @@
     const k = norm(q);
     const sc = scope.dataset.value;
     // Archive · Interview have no data yet: say so right away
-    if (sc !== "collections") { msg.textContent = sc === "archive" ? "아카이브 목록이 비어 있습니다" : "인터뷰 목록이 비어 있습니다"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
+    if (sc !== "collections") { msg.textContent = sc === "archive" ? "텍스트 목록이 비어 있습니다" : "인터뷰 목록이 비어 있습니다"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
     if (!k) { msg.textContent = "검색어를 입력하세요"; msg.hidden = false; grid.hidden = true; grid.innerHTML = ""; return; }
     // only Collections has data for now (Archive · Interview: nothing yet)
     const hits = scope.dataset.value !== "collections" ? [] : works.filter((w) => norm([w.title, w.artist, w.info, w.keys, en(w.title), en(w.artist)].join(" ")).includes(k));

@@ -12,7 +12,7 @@
     ["Light & Kinetic", "라이트 & 키네틱"], ["Performance", "퍼포먼스"], ["Digital Image", "디지털 이미지"],
     ["Categories", "카테고리"], ["All", "전체"],
     ["Paid", "결제"], ["Purchased", "구매 완료"], ["Share", "공유"], ["Image", "이미지"],
-    ["Related Collections", "관련 소장품"], ["Related Archive", "관련 아카이브"],
+    ["Related Collections", "관련 소장품"], ["Related Archive", "관련 아카이브"], ["Related Text", "관련 텍스트"], ["Text", "텍스트"],
     ["Copy", "복사"], ["Copied", "복사됨"], ["Copyright Consent", "저작권 동의"], ["Agree", "동의"], ["Collection", "작품 정보"], ["URL:", "URL:"],
     ["Criticism", "비평"], ["Artist Criticism", "작가 비평"], ["Exhibition Criticism", "전시 비평"], ["Interviews", "인터뷰"], ["Interview", "인터뷰"],
     ["Continue Watching", "이어 보기"], ["My Videos", "내 영상"], ["Not Free", "유료"], ["Free", "무료"], ["Private", "비공개"], ["End", "종료"], ["Extend", "연장하기"],

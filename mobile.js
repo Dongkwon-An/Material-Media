@@ -120,22 +120,34 @@
       const siteLinks = big.length ? sites.map((a) =>
         `<a class="mm-menu__small${a.classList.contains("is-current") ? " is-on" : ""}" href="${a.getAttribute("href")}">${esc(a.textContent.trim())}</a>`).join("") : "";
       pane.innerHTML =
-        `<div class="mm-menu__top"><button class="mm-menu__x" type="button" aria-label="메뉴 닫기"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1l14 14M15 1 1 15" stroke="currentColor" stroke-width="1.4"/></svg></button>` +
-        `<span class="mm-menu__name">${esc(logo.textContent.trim())}</span></div>` +
+        `<div class="mm-menu__top"><span class="mm-menu__name">${esc(logo.textContent.trim())}</span>` +
+        `<button class="mm-menu__x" type="button" aria-label="메뉴 닫기"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2 2 14" stroke="currentColor" stroke-width="1.4"/></svg></button></div>` +
         `<nav class="mm-menu__bigs">${bigLinks}</nav>` +
         `<div class="mm-menu__smalls">${siteLinks}` +
         `<div class="mm-menu__lang"><button type="button" data-lang="ko" class="${lang === "ko" ? "is-on" : ""}">KR</button><span>/</span><button type="button" data-lang="en" class="${lang === "en" ? "is-on" : ""}">EN</button></div></div>`;
     };
+    // the name and the X sit exactly where the logo and the ☰ are
+    const place = () => {
+      const r = (el) => el.getBoundingClientRect();
+      const lr = r(logo), br = r(burger);
+      const nm = pane.querySelector(".mm-menu__name"), x = pane.querySelector(".mm-menu__x"), top = pane.querySelector(".mm-menu__top");
+      const set = (el, b) => Object.assign(el.style, { left: b.left + "px", top: b.top + "px", width: b.width + "px", height: b.height + "px" });
+      set(nm, lr); set(x, br);
+      top.style.height = Math.max(lr.bottom, br.bottom) + "px";
+    };
+    let hideT;
     const openMenu = () => {
-      fill(); pane.hidden = false; burger.setAttribute("aria-expanded", "true");
+      clearTimeout(hideT);
+      fill(); pane.hidden = false; place(); burger.setAttribute("aria-expanded", "true");
       document.documentElement.classList.add("mn-lock");
-      requestAnimationFrame(() => pane.classList.add("is-open"));
+      pane.offsetHeight;                                   // start from above the screen
+      pane.classList.add("is-open");
     };
     const closeMenu = () => {
       if (pane.hidden) return;
       pane.classList.remove("is-open"); burger.setAttribute("aria-expanded", "false");
       document.documentElement.classList.remove("mn-lock");
-      setTimeout(() => { pane.hidden = true; }, 220);
+      hideT = setTimeout(() => { pane.hidden = true; }, 480);   // = the slide up
     };
     window.mmMenuClose = closeMenu;
     burger.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); openMenu(); });
@@ -145,7 +157,7 @@
       if (l) {   // the header's own KR / EN does the work (i18n.js); then the menu is written again in that language
         const sw = document.querySelector(`.lang-sw [data-lang="${l.dataset.lang}"]`);
         if (sw) sw.click();
-        setTimeout(fill, 30);
+        setTimeout(() => { fill(); place(); }, 30);
         return;
       }
       if (e.target.closest("a[href]")) setTimeout(closeMenu, 0);

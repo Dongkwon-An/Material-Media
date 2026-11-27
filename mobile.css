@@ -301,23 +301,28 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .lnb-site__burger svg { width: 0.8em; height: auto; }
 }
 
-/* ---------- phone menu (black, full screen) — mobile.js ---------- */
+/* ---------- phone menu (black, full screen; slides down from the top, back up on X) — mobile.js ---------- */
 .lnb-site__burger { display: none; }
 .mm-menu {
   position: fixed; inset: 0; z-index: 9000; overflow-y: auto;
-  padding: 14px 16px 28px;
+  padding: 0 16px 28px;
   background: #000; color: #fff;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;
-  opacity: 0; transition: opacity 0.2s ease;
+  transform: translateY(-100%);
+  transition: transform 0.48s cubic-bezier(0.65, 0, 0.35, 1);
 }
 .mm-menu[hidden] { display: none; }
-.mm-menu.is-open { opacity: 1; }
+.mm-menu.is-open { transform: none; }
 .mm-menu a, .mm-menu button { color: #fff; text-decoration: none; font-family: inherit; font-weight: inherit; background: none; border: 0; cursor: pointer; }
-.mm-menu__top { display: flex; align-items: center; gap: 16px; }
-.mm-menu .mm-menu__x { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid #fff !important; }
-.mm-menu__x svg { width: 18px; height: 18px; }
-.mm-menu__name { font-size: 17px; letter-spacing: 0.01em; }
-.mm-menu__bigs { margin-top: 44px; }
+.mm-menu__top { display: block; }
+/* name + X: same boxes, same places as the logo + ☰ (mobile.js sets left / top / size) */
+.mm-menu__name, .mm-menu .mm-menu__x {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  border: 1px solid #fff; box-sizing: border-box; padding: 0;
+}
+.mm-menu__name { font-size: 14px; line-height: 1.25; white-space: nowrap; }
+.mm-menu .mm-menu__x svg { width: 46%; height: auto; }
+.mm-menu__bigs { margin-top: 36px; }
 .mm-menu .mm-menu__big {
   display: block; padding: 8px 0 9px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);

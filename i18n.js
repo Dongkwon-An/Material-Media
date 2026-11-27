@@ -11,10 +11,9 @@
     // home / archive introduction links
     ["Learn more", "알아보기"], ["Go to Storage", "바로가기"], ["Museum", "미술관"], ["Artist", "작가"],
     // storage home + categories
-    ["Highlights", "하이라이트"], ["New", "신소장품"], ["Rising", "주목 작품"],
     ["Moving image", "무빙 이미지"], ["Software-based art", "소프트웨어 기반 예술"], ["Network-based art", "네트워크 기반 예술"],
     ["Light & Kinetic", "라이트 & 키네틱"], ["Performance", "퍼포먼스"], ["Digital Image", "디지털 이미지"],
-    ["Categories", "범주"], ["All", "전체"],
+    ["Categories", "카테고리"], ["All", "전체"],
     // work detail
     ["Paid", "결제"], ["Purchased", "구매 완료"], ["Share", "공유"], ["Image", "이미지"],
     ["Related Collections", "관련 소장품"], ["Related Archive", "관련 아카이브"],
@@ -44,13 +43,15 @@
     // archive (기입) pages: their English buttons
     ["Collections List", "소장품 목록"], ["Get Started", "시작"], ["Details", "상세 정보"], ["Provenance", "작품 이력"],
     ["Upload", "업로드"], ["Submit", "제출"], ["Save", "저장"], ["Next", "다음"], ["Review Result", "심사 결과"],
+    // archive (기입) pages: boxes (tag at the top left + buttons) and the State filter
+    ["Leave", "나가기"], ["Continue", "계속 작성"], ["Final Submission", "최종 제출"], ["Loading", "불러오는 중"], ["State", "상태"],
   ];
   const toKo = new Map(), toEn = new Map();
   PAIRS.forEach(([en, ko]) => { toKo.set(en, ko); toEn.set(ko, en); });
 
   // where labels live, and what is never touched
   const UI = "button, a, label, dt, .step-chip, .box-btn, .cl-chip, .wk-tag, .st-chip, .st-tag, .lib-chip, .lib-btn, .lib-row, .lib-info, .wk-dt, " +
-             ".py, .dn, .sh__head, .sh__body, .tm__foot, .mn, .use-card__label, .link-btn, .sr-msg, .ar-empty, .ab-none";
+             ".py, .dn, .sh__head, .sh__body, .tm__foot, .mn, .use-card__label, .link-btn, .sr-msg, .ar-empty, .leave__tag, .leave__foot";
   const SKIP = ".lnb > a.box-btn:first-child, .lnb-site, .footer__box, .footer__copy, .st-logo, .lang-sw, script, style, " +
                ".cl-item, .ar-row, .wk-card, .cr-text, .tm__body, .lib-card__t, .lib-card__bot, .wk-desc__txt";
 

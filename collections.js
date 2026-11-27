@@ -5,41 +5,17 @@
   // detail pages, other filters and About · Archive · Login · Search come later
   document.querySelectorAll("[data-soon]").forEach((a) => a.addEventListener("click", (e) => e.preventDefault()));
 
-  const pages = [...document.querySelectorAll(".cl-page")];
-  const pager = document.getElementById("clPages");
-  if (!pager) {
-    // category pages: clickable, only the number colour changes until the next pages exist
-    pages.forEach((b) => b.addEventListener("click", () => {
-      pages.forEach((p) => { p.classList.toggle("is-active", p === b); p.removeAttribute("aria-current"); });
-      b.setAttribute("aria-current", "page");
-    }));
-  } else {
-    // All: every work of every category, 16 to a page (data-page on each block); ?page=N opens that page
-    const grid = document.querySelector(".cl-grid");
+  // All: every work of every category on one page (no pagination) — the grid lines follow the number of rows
+  const grid = document.querySelector(".cl-grid");
+  if (grid && grid.querySelector("[data-page]")) {
     const cells = [...grid.querySelectorAll(".cl-item")];
-    const lines = (rows) => {                    // the grid lines follow the number of rows on the page
-      grid.querySelectorAll(".cl-line").forEach((l) => l.remove());
-      const H = rows * 389, add = (cls, style) => { const i = document.createElement("i"); i.className = "cl-line " + cls; if (style) i.setAttribute("style", style); grid.appendChild(i); };
-      add("cl-line--h cl-line--top");
-      for (let r = 1; r <= rows; r++) add("cl-line--h", `top:calc(${r * 389} * var(--s) - 1px)`);
-      [351, 701, 1052].forEach((x) => add("cl-line--v", `left:calc(${x} / 1403 * 100%); height:calc(${H} * var(--s))`));
-    };
-    const show = (n) => {
-      n = Math.max(1, Math.min(pages.length, n));
-      let count = 0;
-      cells.forEach((el) => { const on = +el.dataset.page === n; el.hidden = !on; if (on) count++; });
-      lines(Math.max(1, Math.ceil(count / 4)));
-      pages.forEach((p, i) => { const on = i + 1 === n; p.classList.toggle("is-active", on); if (on) p.setAttribute("aria-current", "page"); else p.removeAttribute("aria-current"); });
-      return n;
-    };
-    show(+(new URLSearchParams(location.search).get("page")) || 1);
-    pages.forEach((b, i) => b.addEventListener("click", () => {
-      const n = show(i + 1);
-      try { history.replaceState(null, "", n === 1 ? location.pathname : `?page=${n}`); } catch (e) {}
-      grid.classList.remove("cl-swap"); void grid.offsetWidth; grid.classList.add("cl-swap");
-      const top = grid.getBoundingClientRect().top + scrollY - 120;
-      if (scrollY > top) scrollTo({ top, behavior: "smooth" });
-    }));
+    cells.forEach((el) => (el.hidden = false));
+    grid.querySelectorAll(".cl-line").forEach((l) => l.remove());
+    const rows = Math.max(1, Math.ceil(cells.length / 4)), H = rows * 389;
+    const add = (cls, style) => { const i = document.createElement("i"); i.className = "cl-line " + cls; if (style) i.setAttribute("style", style); grid.appendChild(i); };
+    add("cl-line--h cl-line--top");
+    for (let r = 1; r <= rows; r++) add("cl-line--h", `top:calc(${r * 389} * var(--s) - 1px)`);
+    [351, 701, 1052].forEach((x) => add("cl-line--v", `left:calc(${x} / 1403 * 100%); height:calc(${H} * var(--s))`));
   }
 
   // Categories dropdown: the chevron box opens the list; a category goes to its page (unfinished ones stay put)
@@ -67,7 +43,9 @@
     ["wheel", "touchmove", "keydown"].forEach((ev) => removeEventListener(ev, stopScroll, { passive: false }));
     removeEventListener("scroll", pin);
   };
-  const boxes = [...document.querySelectorAll(".cl-item:not([hidden]) .cl-img")];   // only the works on this page
+  let boxes = [...document.querySelectorAll(".cl-item:not([hidden]) .cl-img")];   // only the works on this page
+  // All (every work on one long page): only the works of the first screen fly in; the rest are simply there below
+  if (document.querySelector(".cl-grid [data-page]")) boxes = boxes.filter((b) => b.closest(".cl-item").getBoundingClientRect().top < innerHeight);
   const finish = () => {
     root.classList.add("cl-built");
     root.classList.remove("cl-intro");

@@ -8,9 +8,9 @@
   const file = location.pathname.split("/").pop() || "index.html";
   const here = /^myarchive-/.test(file) ? "archive" : (file === "index.html" || file === "archive.html") ? "media" : "storage";
   const SITES = [
-    { key: "media",   label: "MATERIAL MEDIA", href: "index.html",          goto: "site-home" },
-    { key: "archive", label: "ARCHIVE",        href: "myarchive-login.html", goto: "archive-home" },
-    { key: "storage", label: "STORAGE",        href: "storage.html",         goto: "storage-home" },
+    { key: "media",   label: "MATERIAL MEDIA HOME", href: "index.html",          goto: "site-home" },
+    { key: "archive", label: "MATERIAL MEDIA ARCHIVE", href: "myarchive-login.html", goto: "archive-home" },
+    { key: "storage", label: "MATERIAL MEDIA STORAGE", href: "storage.html",         goto: "storage-home" },
   ];
   const wrap = document.createElement("div");
   wrap.className = "lnb-site";

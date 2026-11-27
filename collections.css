@@ -138,3 +138,14 @@ html:has(.page-coll) { scroll-snap-type: none; }
 }
 .cl-cat[data-tip]:hover::after, .cl-cat[data-tip]:focus-visible::after { opacity: 1; transform: none; }
 .cl-cat[data-tip]:focus { outline: none; }
+
+/* category pages: what the category covers, as a sentence under the Categories row (the chip's hover box is then not needed) */
+.cl-desc {
+  margin: 0 var(--edge);
+  padding: 0 0 calc(16 * var(--s));
+  font-size: max(12px, calc(15 * var(--s))); font-weight: 500; line-height: 1.5; color: #555;
+  word-break: keep-all;
+}
+.cl-filter:has(+ .cl-desc) { padding-bottom: calc(10 * var(--s)); }
+.cl-filter:has(+ .cl-desc) .cl-cat[data-tip]::after { display: none; }
+.cl-filter:has(+ .cl-desc) .cl-cat[data-tip] { cursor: default; }

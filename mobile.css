@@ -291,4 +291,6 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .ab-step__desc { font-size: 13px; }
   .ab-arrow svg { width: 18px; transform: rotate(90deg); }
   .page-about .st-foot { padding-top: 56px; }
+  .cl-desc { padding-bottom: 12px; font-size: 13px; }
+  .cl-filter:has(+ .cl-desc) { padding-bottom: 8px; }
 }

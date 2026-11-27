@@ -301,3 +301,9 @@ a { color: inherit; text-decoration: none; }
 .lnb-site__menu .box-btn.is-current, .lnb-site__menu .box-btn.is-current:hover { background: var(--black); color: var(--white); }
 .lnb-site__menu .box-btn--blue:hover { background: #eef3ff; color: var(--archive); }
 .lnb-site__menu .box-btn--blue.is-current, .lnb-site__menu .box-btn--blue.is-current:hover { background: var(--archive); border-color: var(--archive); color: var(--white); }
+
+/* ---------- KR | EN switch, right end of the header — i18n.js ---------- */
+.lang-sw { display: inline-flex; gap: 4px; margin-left: clamp(10px, 1.1vw, 20px); }
+.lang-sw .box-btn { min-width: 2.2em; }
+.lang-sw .box-btn.is-on, .lang-sw .box-btn.is-on:hover { background: var(--black); border-color: var(--black); color: var(--white); }
+.lang-sw .box-btn--blue.is-on, .lang-sw .box-btn--blue.is-on:hover { background: var(--archive); border-color: var(--archive); color: var(--white); }

@@ -293,4 +293,8 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .page-about .st-foot { padding-top: 56px; }
   .cl-desc { padding-bottom: 12px; font-size: 13px; }
   .cl-filter:has(+ .cl-desc) { padding-bottom: 8px; }
+
+  /* KR | EN: right end of the logo row */
+  .lnb { position: relative; }
+  .lnb .lang-sw { position: absolute; right: 0; top: 10px; margin-left: 0; }
 }

@@ -273,4 +273,22 @@ html.mn-lock, html.mn-lock body { overflow: hidden; }
   .page-archive .use-card { height: 180px; min-height: 0; }
   .page-archive .use-card__label { left: 20px; top: 16px; font-size: 40px; }
   .page-archive .use-card__arrow { right: 20px; bottom: 20px; width: 56px; }
+
+  /* ================= storage about ================= */
+  .page-about .ab { padding: 0 var(--pad); }
+  .ab-title { margin-top: 28px; font-size: 44px; }
+  .ab-lead { margin-top: 16px; font-size: 15px; line-height: 1.7; }
+  .ab-rule { margin-top: 32px; }
+  .ab-cols { grid-template-columns: 1fr; row-gap: 28px; margin-top: 32px; }
+  .ab-cols > div { padding-right: 0; }
+  .ab-h3 { font-size: 21px; }
+  .ab-cols p { margin-top: 10px; font-size: 15px; }
+  .ab-proc { margin-top: 52px; }
+  .ab-proc + .ab-proc { margin-top: 40px; }
+  .ab-steps { grid-template-columns: 1fr; row-gap: 6px; margin-top: 18px; }
+  .ab-step { border-radius: 10px; padding: 16px 18px 18px; gap: 8px; }
+  .ab-step__no, .ab-step__title { font-size: 20px; }
+  .ab-step__desc { font-size: 13px; }
+  .ab-arrow svg { width: 18px; transform: rotate(90deg); }
+  .page-about .st-foot { padding-top: 56px; }
 }
